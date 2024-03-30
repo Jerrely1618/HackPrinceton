@@ -1,6 +1,5 @@
-// profile.tsx
 import React from 'react';
-
+import Chat from "../components/chat"
 export default function Profile () {
   const background_div = "bg-white kufam-font bg-opacity-10 backdrop-blur-sm shadow-lg p-6 rounded-lg"
   const sections = "w-1/3 m-2"
@@ -41,7 +40,7 @@ export default function Profile () {
         </div>
       </section>
       <section className={`right ${sections}`}  id='right'>
-        <h2>Placeholder Chat</h2>
+        <Chat />
       </section>
     </main>
   );
