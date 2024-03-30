@@ -1,14 +1,16 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-const background_div = "bg-white kufam-font bg-opacity-10 backdrop-blur-sm shadow-lg p-6 rounded-lg hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
-const sections = "w-1/3 m-2"
-import NewCard from "../components/NewCard/NewCard"
+import CreditCardModal from '../components/NewCard/NewCard';
 import { AnimatePresence } from "framer-motion"
 import Chat from "../components/chat"
+import CreditCard from '../components/creditcard';
+
 export default function Profile() {
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
-  const [cardData, setCardData] = useState([])
+  const [cardData, setCardData] = useState(null)
+  const background_div = "bg-white kufam-font bg-opacity-10 backdrop-blur-sm shadow-lg p-6 rounded-lg hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
+const sections = "w-1/3 m-2"
   useEffect(() => {
     setIsNewCardOpen(true)
   }, [])
@@ -17,7 +19,7 @@ export default function Profile() {
     console.log("Data:",cardData)
   };
 useEffect(() => {
-  if (cardData.length > 0) {
+  if (cardData) {
     console.log("Card Data Set:", cardData);
   }
 }, [cardData]);
@@ -29,7 +31,7 @@ useEffect(() => {
   <div className='z-100'>
     {isNewCardOpen && (
               <AnimatePresence>
-                  <NewCard
+                  <CreditCardModal
                     isOpen={setIsNewCardOpen}
                     onClose={closeNewCard}
                     setCardData={setCardData}
@@ -58,7 +60,7 @@ useEffect(() => {
             <span className='text-red-500 font-bold'>-20pt from last week</span>
           </div>
           <div className={`cash-iq m-1 flex flex-col ${background_div}`}>
-            <h2 className='text-4xl font-bold space-y-1'>Recommendations</h2>
+           <span className='text-3xl'>Our <span className='text-3xl font-bold'>Recommendation</span></span>
             <ul className="list-disc pl-5 pt-2">
               <li>Spend less on Uber Eats</li>
               <li>Spend less on Grocery</li>
@@ -68,14 +70,15 @@ useEffect(() => {
           </div>
         </div>
       </section>
-      <section className={`middle ${sections}`}>
-        <div className={`spending-analyzer ${background_div}`}>
-          PlaceHolder
+      <section className="middle flex flex-col items-center justify-center">
+        <div className="card">
+          <CreditCard />
         </div>
-        <div className={`spending-analyzer `}>
-
+        <div className="graph">
+          {/* Graph content goes here */}
         </div>
       </section>
+
       <section className={`right ${sections}`} id='right'>
         <Chat />
       </section>
