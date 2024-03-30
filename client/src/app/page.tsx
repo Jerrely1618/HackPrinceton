@@ -4,7 +4,7 @@ import bg from "../../public/bg.svg";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-row w-full items-center justify-center bg-black overflow-hidden">
-      <div className="flex flex-col flex-1 items-center justify-center w-full bg-transparent text-white gap-16">
+      <div className="flex flex-col flex-1 items-center justify-center w-full bg-transparent text-white gap-16 kufam-font">
         <span
           style={{
             fontSize: "80px",
@@ -19,17 +19,17 @@ export default function Home() {
           WealthWise!
         </span>
         <div className="flex flex-col text-center w-full">
-          <span className="text-[30px] font-bold">
+          <span className="text-[30px] font-bold kufam-font">
             Start spending the smart way
           </span>
-          <span className="text-[15px]">
-            Get your finances back in control with WealthyWise!
+          <span className="mt-3 text-[15px]">
+            Get your finances back in control with WealthWise!
           </span>
         </div>
 
         <Button
           variant="shadow"
-          className="p-3 rounded-xl text-black font-bold"
+          className="p-7 rounded-xl text-black font-bold text-lg"
           style={{
             backgroundColor: "#00FF94",
           }}
