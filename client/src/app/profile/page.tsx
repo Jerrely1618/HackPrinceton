@@ -5,24 +5,22 @@ import CreditCardModal from '../components/NewCard/NewCard';
 import { AnimatePresence } from "framer-motion"
 import Chat from "../components/chat"
 import CreditCard from '../components/creditcard';
+import { Button } from '@nextui-org/button';
 
 export default function Profile() {
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
   const [cardData, setCardData] = useState(null)
   const background_div = "bg-white kufam-font bg-opacity-10 backdrop-blur-sm shadow-lg p-6 rounded-lg hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
-const sections = "w-1/3 m-2"
+  const sections = "w-1/3 m-2"
   useEffect(() => {
     setIsNewCardOpen(true)
   }, [])
   const closeNewCard = () => {
     setIsNewCardOpen(false);
-    console.log("Data:",cardData)
   };
-useEffect(() => {
-  if (cardData) {
-    console.log("Card Data Set:", cardData);
-  }
-}, [cardData]);
+  const openNewCard = () => {
+    setIsNewCardOpen(true);
+  };
 
   return (
     <main className='flex text-white p-4 w-full h-full justify-center' style={{
@@ -70,13 +68,19 @@ useEffect(() => {
           </div>
         </div>
       </section>
-      <section className="middle flex flex-col items-center justify-center">
-        <div className="card">
-          <CreditCard />
-        </div>
+      <section className="middle flex flex-col items-center justify-center w-full">
+        <nav className={`${background_div} p-0 mb-2`}>
+          <Button onClick={openNewCard} className={`p-0 m-2 text-xl text-white bg-opacity-0`}>Edit Card</Button>
+          <Button onClick={openNewCard} className={`p-0 m-2 text-xl text-white bg-opacity-0`}>Analyze Card Spending</Button>
+          <Button onClick={openNewCard} className={`p-0 m-2 text-xl text-white bg-opacity-0`}>Edit Card</Button>  
+        </nav>
         <div className="graph">
           {/* Graph content goes here */}
         </div>
+        <div className="card mb-10">
+          {cardData && <CreditCard cardData={cardData} />}
+        </div>
+        
       </section>
 
       <section className={`right ${sections}`} id='right'>

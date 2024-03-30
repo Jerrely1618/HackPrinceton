@@ -27,7 +27,7 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
       cardType,
     };
     setCardData(fullData); 
-    // onClose(); 
+    onClose(); 
   };
 
   if (!isOpen) return null;
@@ -111,7 +111,7 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
               {/* Cardholder's Name Field */}
               <Grid item xs={12}>
                 <TextField
-                  {...register('name', { required: 'Name on card is required' })}
+                  {...register('cardHolderName', { required: 'Name on card is required' })}
                   label="Name on Card"
                   type="text"
                   variant="filled"
