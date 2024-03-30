@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 const background_div = "bg-white kufam-font bg-opacity-10 backdrop-blur-sm shadow-lg p-6 rounded-lg hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
 const sections = "w-1/3 m-2"
-import NewCard from "../components/NewCard/NewCard.tsx";
+import NewCard from "../components/NewCard/NewCard";
 import { AnimatePresence } from "framer-motion"
 import Chat from "../components/chat"
 export default function Profile () {
@@ -68,7 +68,7 @@ export default function Profile () {
 
         </div>
       </section>
-      <section className={`right ${sections}`}  id='right'>
+      <section className={`right ${sections}`} id='right'>
         <Chat />
       </section>
     </main>
