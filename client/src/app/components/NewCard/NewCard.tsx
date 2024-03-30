@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import Cards from 'react-credit-cards-2'
+// import Cards from 'react-credit-cards-2';
+
 export default function NewCard ({ isOpen, onClose}){
 const [cardInfo, setCardInfo] = useState({
     number: '',
@@ -42,13 +43,13 @@ const [cardInfo, setCardInfo] = useState({
           >
             <h2 className="text-2xl font-semibold mb-4 text-black">Add a New Card</h2>
             <div>
-      <Cards
+      {/* <Cards
         number={cardInfo.number}
         expiry={cardInfo.expiry}
         cvc={cardInfo.cvc}
         name={cardInfo.name} 
         focused={cardInfo.focus}
-      />
+      /> */}
       <form>
         <input
           type="number"
