@@ -14,8 +14,6 @@ interface UserData {
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
   const [UserData, setUserData] = useState<UserData[]>([]);
-
-
   const handleTryNowClick = () => {
     setShowForm(true); 
   };

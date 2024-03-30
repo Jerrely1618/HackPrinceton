@@ -3,17 +3,24 @@
 import React, { useState, useEffect } from 'react';
 const background_div = "bg-white kufam-font bg-opacity-10 backdrop-blur-sm shadow-lg p-6 rounded-lg hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
 const sections = "w-1/3 m-2"
-import NewCard from "../components/NewCard/NewCard.tsx";
+import NewCard from "../components/NewCard/NewCard"
 import { AnimatePresence } from "framer-motion"
 import Chat from "../components/chat"
 export default function Profile () {
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
+  const [cardData, setCardData] = useState([])
   useEffect(() => {
     setIsNewCardOpen(true)
   },[])
   const closeNewCard = () => {
     setIsNewCardOpen(false);
+    console.log("Data:",cardData)
   };
+useEffect(() => {
+  if (cardData.length > 0) {
+    console.log("Card Data Set:", cardData);
+  }
+}, [cardData]);
 
   return (
     <main className='flex text-white p-4 w-full h-full justify-center' style={{
@@ -25,6 +32,7 @@ export default function Profile () {
                   <NewCard
                     isOpen={setIsNewCardOpen}
                     onClose={closeNewCard}
+                    setCardData={setCardData}
                   />
               </AnimatePresence>)}
               </div>
