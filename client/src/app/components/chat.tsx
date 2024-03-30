@@ -50,12 +50,37 @@ export default function Chat() {
                 display: 'flex',
                 overflowY: 'auto'
             }}>
-                <div style={{ alignSelf: 'stretch', height: '350px', flexDirection: 'column', justifyContent: 'flex-start',  gap: '5px', display: 'flex' }}>
+                <div style={{ alignSelf: 'stretch', height: '350px', flexDirection: 'column', justifyContent: 'flex-start', gap: '5px', display: 'flex' }}>
                     {messages.map((msg, index) => (
                         <Chatmessage key={index} message={msg.message} timestamp={msg.timestamp} sender={msg.sender} />
                     ))}
                 </div>
             </div>
+
+            <div className="flex flex-col w-full">
+                <div className="h-[84px] px-[30px] py-5 bg-white rounded-bl-lg rounded-br-lg justify-between items-center inline-flex">
+                    <div className="justify-start items-center gap-5 flex">
+                        <div className="w-6 h-6 relative" />
+                        <input type="text" placeholder="Reply ..." className="text-slate-900 text-opacity-60 text-base font-normal font-['Source Sans Pro']" />                    </div>
+                    <div className="justify-start items-center gap-[15px] flex">
+                        <div className="w-6 h-6 relative opacity-40">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <g opacity="0.4">
+                                    <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9 11C10.1046 11 11 10.1046 11 9C11 7.89543 10.1046 7 9 7C7.89543 7 7 7.89543 7 9C7 10.1046 7.89543 11 9 11Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M21 15L17.914 11.914C17.5389 11.5391 17.0303 11.3284 16.5 11.3284C15.9697 11.3284 15.4611 11.5391 15.086 11.914L6 21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div className="w-10 h-10 bg-indigo-600 rounded-[100px] justify-center items-center gap-2 flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };
