@@ -5,9 +5,31 @@ import modal
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def hello():
-    return 'Hello from Flask!'
 
-if __name__ == '__main__':
+@app.route("/login")
+def login():
+    pass
+
+
+@app.route("/signup")
+def signup():
+    pass
+
+
+@app.route("/ai")
+def response():
+    pass
+
+
+@app.route("/cashiq")
+def cashiq():
+    pass
+
+
+@app.route("/graph")
+def graph():
+    pass
+
+
+if __name__ == "__main__":
     app.run(debug=True)
