@@ -1,4 +1,3 @@
-// profile.tsx
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -6,7 +5,7 @@ const background_div = "bg-white kufam-font bg-opacity-10 backdrop-blur-sm shado
 const sections = "w-1/3 m-2"
 import NewCard from "../components/NewCard/NewCard.tsx";
 import { AnimatePresence } from "framer-motion"
-
+import Chat from "../components/chat"
 export default function Profile () {
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
   useEffect(() => {
@@ -70,7 +69,7 @@ export default function Profile () {
         </div>
       </section>
       <section className={`right ${sections}`}  id='right'>
-        <h2>Placeholder Chat</h2>
+        <Chat />
       </section>
     </main>
   );
