@@ -24,8 +24,8 @@ const [cardInfo, setCardInfo] = useState({
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
-          className="fixed inset-0 flex items-center justify-center z-50" // Updated z-index
-          style={{ zIndex: 1050 }} // Inline style for higher specificity
+          className="fixed inset-0 flex items-center justify-center z-50" 
+          style={{ zIndex: 1050 }} 
         >
           
           <motion.div
@@ -37,8 +37,8 @@ const [cardInfo, setCardInfo] = useState({
           ></motion.div>
 
           <motion.div
-            className="relative bg-white rounded-lg p-6 z-50 w-1/2" // Ensure this is sufficiently high
-            style={{ zIndex: 1051 }} // Inline style for even higher specificity
+            className="relative bg-white rounded-lg p-6 z-50 w-1/2"
+            style={{ zIndex: 1051 }}
           >
             <h2 className="text-2xl font-semibold mb-4 text-black">Add a New Card</h2>
             <div>

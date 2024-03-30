@@ -24,16 +24,15 @@ export default function Home() {
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = {
-      fullName: event.target.fullName.value,
-      estimatedIncome: event.target.estimatedIncome.value,
-      weeklyExpenditures: event.target.weeklyExpenditures.value,
-      bigSpendings: event.target.bigSpendings.value,
-      goals: event.target.goals.value,
+    const formData: UserData = {
+      fullName: (event.currentTarget.elements.namedItem("fullName") as HTMLInputElement).value,
+      estimatedIncome: (event.currentTarget.elements.namedItem("estimatedIncome") as HTMLInputElement).value,
+      weeklyExpenditures: (event.currentTarget.elements.namedItem("weeklyExpenditures") as HTMLInputElement).value,
+      bigSpendings: (event.currentTarget.elements.namedItem("bigSpendings") as HTMLInputElement).value,
+      goals: (event.currentTarget.elements.namedItem("goals") as HTMLInputElement).value,
     };
-    setUserData([...UserData, formData]);
-    console.log(UserData);
-    setShowForm(false);
+
+    setUserData([formData]);
   };
   return (
     <main className="flex min-h-screen flex-row w-full items-center justify-center bg-black overflow-hidden">
