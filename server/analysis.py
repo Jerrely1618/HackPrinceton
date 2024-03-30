@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv("test_data.csv", parse_dates=["date"])
+df = pd.read_csv("./server/test_data.csv", parse_dates=["date"])
 
 # Set Seaborn style
 sns.set_style("whitegrid")
