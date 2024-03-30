@@ -8,6 +8,16 @@ export default function Chat() {
         { message: 'I have a question about the return policy for a product I purchased.', timestamp: 'Just Now', sender: 'user' },
     ];
 
+    const handleSend = () => {
+        alert('Send button clicked');
+    };
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        console.log(file);
+        // Upload the image file here
+    };
+
     return (
         <div>
             <div style={{
@@ -63,7 +73,7 @@ export default function Chat() {
                         <div className="w-6 h-6 relative" />
                         <input type="text" placeholder="Reply ..." className="text-slate-900 text-opacity-60 text-base font-normal font-['Source Sans Pro']" />                    </div>
                     <div className="justify-start items-center gap-[15px] flex">
-                        <div className="w-6 h-6 relative opacity-40">
+                        <div className="w-6 h-6 relative opacity-40" onClick={() => document.getElementById('imageUpload').click()} style={{cursor: 'pointer'}}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g opacity="0.4">
                                     <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -71,12 +81,15 @@ export default function Chat() {
                                     <path d="M21 15L17.914 11.914C17.5389 11.5391 17.0303 11.3284 16.5 11.3284C15.9697 11.3284 15.4611 11.5391 15.086 11.914L6 21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </g>
                             </svg>
+                            <input type="file" id="imageUpload" style={{ display: 'none' }} accept="image/*" onChange={handleImageUpload} />
                         </div>
-                        <div className="w-10 h-10 bg-indigo-600 rounded-[100px] justify-center items-center gap-2 flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
+                        <button onClick={handleSend}>
+                            <div className="w-10 h-10 bg-indigo-600 rounded-[100px] justify-center items-center gap-2 flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
