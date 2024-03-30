@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
+import { Link } from "@nextui-org/react";
 import bg from "../../public/bg.svg";
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
           </span>
         </div>
 
-        <Button
+        {/* <Button
           variant="shadow"
           className="p-7 rounded-xl text-black font-bold text-lg"
           style={{
@@ -36,7 +37,35 @@ export default function Home() {
         >
           Try it for free now!
         </Button>
+      </div> */}
+
+        <Button
+          href="/profile"
+          as={Link}
+          variant="shadow"
+          className="p-7 rounded-xl text-black font-bold text-lg"
+          style={{
+            backgroundColor: "#00FF94",
+          }}
+        >
+          Try it for free now!
+        </Button>
+
+        {/* <Link href="/profile" passHref>
+          <a>
+            <Button
+              variant="shadow"
+              className="p-7 rounded-xl text-black font-bold text-lg"
+              style={{
+                backgroundColor: "#00FF94",
+              }}
+            >
+              Try it for free now!
+            </Button>
+          </a>
+        </Link> */}
       </div>
+
       <div className="hidden flex-col flex-1 w-full h-screen overflow-hidden lg:flex">
         <div className="mt-10 ml-10 fixed bg-black border-2 border-white rounded-[32px] p-1 h-full overflow-hidden w-full">
           <Image src={bg} alt="Alt" className="mt-1" />
