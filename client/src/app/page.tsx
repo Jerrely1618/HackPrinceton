@@ -1,7 +1,10 @@
+"use client"
+
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Link } from "@nextui-org/react";
 import bg from "../../public/bg.svg";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-row w-full items-center justify-center bg-black overflow-hidden">
