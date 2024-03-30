@@ -7,7 +7,11 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'profile-bg': "url('../../public/bg_profile.svg')",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],
