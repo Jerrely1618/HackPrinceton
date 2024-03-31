@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 import { Chatmessage } from "./chatmessage";
 
 export default function Chat() {
@@ -38,15 +38,17 @@ export default function Chat() {
     }
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+  const handleKeyPress = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
       handleSend();
     }
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setNewMessage(event.target.value);
   };
+
 
   return (
     <div className="h-full">
@@ -124,8 +126,8 @@ export default function Chat() {
             <textarea
               placeholder="Type your message here..."
               value={newMessage}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
+              onChange={handleInputChange} // Corrected for textarea
+              onKeyPress={handleKeyPress} // Correctly typed for textarea
               style={{
                 width: "100%",
                 height: "70px", // Adjust height as needed
