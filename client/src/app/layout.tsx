@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 import "./globals.css";
+import ParticlesBackground from "./particles";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       />
 
       <body>
+        <ParticlesBackground />
         <UserProvider>{children}</UserProvider>
       </body>
     </html>
