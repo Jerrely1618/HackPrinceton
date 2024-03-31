@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { Chatmessage } from "./chatmessage";
 
@@ -39,12 +41,12 @@ export default function Chat() {
     setMessages(newMessages);
   };
 
-    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => { 
-        if (event.key === 'Enter' && event.currentTarget.value) {
-            handleSend(event.currentTarget.value);
-            event.currentTarget.value = ''; 
-        }
-    };
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && event.currentTarget.value) {
+      handleSend(event.currentTarget.value);
+      event.currentTarget.value = "";
+    }
+  };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
