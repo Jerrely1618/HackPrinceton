@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Link } from "@nextui-org/react";
 import bg from "../../public/bg.svg";
+
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import axios from "axios";
 
@@ -17,15 +18,11 @@ interface UserData {
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
   const [UserData, setUserData] = useState<UserData[]>([]);
-  const handleTryNowClick = () => {
-    setShowForm(true);
-  };
-  const handleBackClick = () => {
-    setShowForm(false);
-  };
-  const handleSubmit = async (event: any) => {
+  const handleTryNowClick = () => setShowForm(true);
+  const handleBackClick = () => setShowForm(false);
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = {
+    const formData: UserData = {
       fullName: (
         event.currentTarget.elements.namedItem("fullName") as HTMLInputElement
       ).value,
