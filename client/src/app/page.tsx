@@ -7,7 +7,9 @@ import lap from "../../public/lap.png";
 
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import axios from "axios";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { useRouter, redirect } from 'next/navigation';
 
 interface UserData {
   fullName: string;
@@ -19,9 +21,28 @@ interface UserData {
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
   const [UserData, setUserData] = useState<UserData[]>([]);
-  const handleTryNowClick = () => setShowForm(true);
-  const handleBackClick = () => setShowForm(false);
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const { user, isLoading } = useUser();
+  const router = useRouter();
+
+  const login = () => {
+    router.push('/api/auth/login');
+  };
+
+  const tryForFree = () => {
+    // Navigate to your "Try for Free" page
+    // You can pass a query parameter to indicate that this is a signup attempt
+    router.push('/api/auth/login?screen_hint=signup');
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  
+  const handleTryNowClick = () => {
+    setShowForm(true);
+  };
+  const handleBackClick = () => {
+    setShowForm(false); 
+  };
+  const handleSubmit = (event) => {
     event.preventDefault();
     const formData: UserData = {
       fullName: (
@@ -61,6 +82,7 @@ export default function Home() {
     window.location.href = "http://localhost:3000/profile";
   };
   return (
+
     <main className="flex min-h-screen flex-row w-full items-center justify-center bg-black overflow-hidden">
       <div className="flex flex-col flex-1 items-center justify-center w-full bg-transparent text-white gap-16">
         <span
@@ -219,7 +241,7 @@ export default function Home() {
             </span>
             <div className="flex flex-row gap-2 mt-4 items-center justify-center">
               <Button
-                onClick={handleTryNowClick}
+                onClick={tryForFree}
                 className="text-white border-2 border-green-600 font-bold"
                 style={{
                   background: "none",
@@ -238,6 +260,7 @@ export default function Home() {
               <Button
                 href="/profile"
                 as={Link}
+                onClick={login}
                 className="text-white border-2 border-green-600 font-bold"
                 style={{
                   background: "none",

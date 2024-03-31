@@ -1,9 +1,12 @@
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import "./globals.css";
 
 import type { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+export default function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <UserProvider>
+      <Component {...pageProps} />
+    </UserProvider>
+  );
 }
-
-export default MyApp;

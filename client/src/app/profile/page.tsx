@@ -7,9 +7,9 @@ import Chat from "../components/chat";
 import CreditCard from "../components/creditcard";
 import { Button } from "@nextui-org/react";
 import area from "../../../public/Areachart.png";
-import plus from "../../../public/plus.svg";
-import up from "../../../public/up.svg";
-import history from "../../../public/history.svg";
+// import plus from "../../../public/plus.svg";
+// import up from "../../../public/up.svg";
+// import history from "../../../public/history.svg";
 import Image from "next/image";
 import axios from "axios";
 import { Divider } from "@nextui-org/react";
@@ -248,7 +248,7 @@ export default function Profile() {
       <section className="middle flex flex-col gap-1 items-center justify-center w-full flex-[3_3_0%]">
         <nav className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
           <div className="flex flex-row items-center justify-center ml-3">
-            <Image src={plus} alt="plis" width={15} />
+            {/* <Image src={plus} alt="plis" width={15} /> */}
             <Button
               onClick={openNewCard}
               className="text-[10px] text-white bg-opacity-0"
@@ -260,7 +260,7 @@ export default function Profile() {
             </Button>
           </div>
           <div className="flex flex-row items-center justify-center">
-            <Image src={up} alt="plis" width={15} />
+            {/* <Image src={up} alt="plis" width={15} /> */}
 
             <Button
               onClick={handleAnalyze}
@@ -273,7 +273,7 @@ export default function Profile() {
             </Button>
           </div>
           <div className="flex flex-row items-center justify-center">
-            <Image src={history} alt="plis" width={15} />
+            {/* <Image src={history} alt="plis" width={15} /> */}
             <Button
               onClick={handleTransactions}
               className="p-0 m-2 text-[10px] text-white bg-opacity-0"
