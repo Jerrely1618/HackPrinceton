@@ -105,7 +105,7 @@ export default function Profile() {
 
   return (
     <main
-      className="h-screen overflow-hidden flex text-white p-5 w-full gap-10 items-center justify-center"
+      className="h-screen overflow-hidden flex text-white p-0 w-full gap-10 items-center justify-center"
       style={{
         background:
           "radial-gradient(32.55% 67.71% at 47.09% 32.29%, #2E2277 0%, #000000 99.74%)",
@@ -125,7 +125,7 @@ export default function Profile() {
         ""
       )}
 
-      <section className="flex flex-col gap-10 items-left justify-center p-2 rounded-3xl h-full">
+      <section className="flex flex-col gap-10 items-left justify-center p-2 rounded-3xl h-full pl-10">
         <div className="flex gap-1">
           <span className=" ">
             <svg
@@ -325,10 +325,7 @@ export default function Profile() {
           </>
         )}
       </section>
-      <section
-        className="flex flex-[2_2_0%] items-center justify-center p-10"
-        id="right"
-      >
+      <section className="flex flex-[2_2_0%] h-screen w-full bg-white">
         <Chat />
       </section>
     </main>

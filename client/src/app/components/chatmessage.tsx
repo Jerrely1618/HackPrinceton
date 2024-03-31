@@ -20,7 +20,7 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
   const messageBubbleStyles = {
     display: "inline-block", // Let the bubble size according to its content
     backgroundColor: sender === "bot" ? "#C7E1ED" : "#6366F1",
-    color: sender === "bot" ? "black" : "white",
+    color: sender === "bot" ? "black" : "black",
     borderRadius: "20px",
     margin: "0 0 10px",
     marginBottom: "10px",
@@ -34,7 +34,7 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
     >
       {sender === "bot" && (
         <div className="flex items-start gap-2">
-          <div className="w-[35px] h-[35px] bg-white rounded-[100px] flex-col justify-center items-center gap-2 inline-flex">
+          <div className="w-[35px] h-[35px] bg-black rounded-[100px] flex-col justify-center items-center gap-2 inline-flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"
@@ -49,7 +49,7 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
             </svg>
           </div>
           <div className="flex flex-col">
-            <div className="text-white text-base font-semibold font-['Source Sans Pro'] mt-[-30px]">
+            <div className="text-black text-base font-semibold font-['Source Sans Pro'] mt-[-30px]">
               Charlie
             </div>
             <div
@@ -62,7 +62,7 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
             </div>
             <div
               className="text-xs font-normal font-['Source Sans Pro'] mt-2"
-              style={{ color: "white" }}
+              style={{ color: "black" }}
             >
               {timestamp}
             </div>
@@ -82,7 +82,7 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
           <div className="flex justify-end items-center">
             <div
               className="text-xs font-normal font-['Source Sans Pro'] mt-2"
-              style={{ color: "white" }}
+              style={{ color: "black" }}
             >
               {timestamp}
             </div>

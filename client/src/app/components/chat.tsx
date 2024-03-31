@@ -5,12 +5,12 @@ import { Chatmessage } from "./chatmessage";
 export default function Chat() {
   const [messages, setMessages] = useState([
     {
-      message: "I'm doing well, thank you! How can I help you today?",
+      message: "Hey, I'm Charlie! How can I help?",
       timestamp: "08:16 AM",
       sender: "bot",
     },
   ]);
-  const [newMessage, setNewMessage] = useState(""); // Add state to manage the input value
+  const [newMessage, setNewMessage] = useState("");
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,7 +23,6 @@ export default function Chat() {
     }
   };
 
-  // Update to use the newMessage state
   const handleSend = () => {
     if (newMessage.trim()) {
       const newMessages = [
@@ -35,7 +34,7 @@ export default function Chat() {
         },
       ];
       setMessages(newMessages);
-      setNewMessage(""); // Clear the input field after sending
+      setNewMessage("");
     }
   };
 
@@ -49,15 +48,8 @@ export default function Chat() {
     setNewMessage(event.target.value);
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      const file = event.target.files[0];
-      console.log(file);
-    }
-  };
-
   return (
-    <div className="">
+    <div className="h-full ">
       <div
         style={{
           background:
@@ -65,12 +57,22 @@ export default function Chat() {
         }}
         className="rounded-3xl"
       >
-        <div className="p-[30px] bg-opacity-0  backdrop-blur-[30px] flex-col justify-start items-start gap-5 inline-flex ">
+        <div className="p-[30px] bg-opacity-0  backdrop-blur-[30px] flex-col justify-start items-start gap-5 inline-flex">
           <div className="flex-col justify-start items-start gap-[5px] flex">
-            <div className="text-white text-3xl font-bold font-['Source Sans Pro']">
+            <div
+              className="text-white text-3xl font-bold"
+              style={{
+                fontFamily: "Kufam, sans-serif",
+              }}
+            >
               Charlie
             </div>
-            <div className="w-[370px] text-white text-base font-normal font-['Source Sans Pro'] leading-7">
+            <div
+              className=" text-white text-base font-normal leading-7"
+              style={{
+                fontFamily: "Kufam, sans-serif",
+              }}
+            >
               Need financial advise? Ask Charlie for help!
             </div>
           </div>
@@ -120,12 +122,14 @@ export default function Chat() {
         <div className="h-[84px] px-[30px] py-5 bg-white rounded-bl-lg rounded-br-lg justify-between items-center inline-flex">
           <div className="justify-start items-center gap-5 flex">
             <div className="w-6 h-6 relative" />
-            <input
-              type="text"
+            <textarea
               placeholder="Type your message here..."
+              value={newMessage}
+              onChange={handleInputChange}
               onKeyPress={handleKeyPress}
               style={{
                 width: "100%",
+                height: "70px", // Adjust height as needed
                 padding: "10px 15px",
                 fontSize: "16px",
                 border: "1px solid #eaeaea",
