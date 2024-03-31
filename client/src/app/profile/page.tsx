@@ -129,10 +129,10 @@ export default function Profile() {
 
       <section className="flex flex-col gap-10 items-left justify-center p-2 rounded-3xl h-full">
         <div className="flex gap-1">
-          <span className="mb-2">
+          <span className=" ">
             <svg
-              width="48"
-              height="48"
+              width="28"
+              height="28"
               viewBox="0 0 72 74"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -148,14 +148,14 @@ export default function Profile() {
             </svg>
           </span>
           <span
-            className="text-xl flex flex-row gap-1 text-[38px] justify-center items-center"
+            className="text-xl flex flex-row gap-1 text-[18px] justify-center items-center"
             style={{
               fontFamily: "Kufam, sans-serif",
             }}
           >
             Welcome,{" "}
             <span
-              className="text-xl font-semibold text-[38px]"
+              className="text-xl font-semibold text-[18px]"
               style={{
                 fontFamily: "Kufam, sans-serif",
               }}
