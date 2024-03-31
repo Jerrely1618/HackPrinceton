@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import React, { useState, useEffect, useRef } from "react";
 import { Chatmessage } from "./chatmessage";
 
@@ -16,8 +15,12 @@ export default function Chat() {
       sender: "bot",
     },
   ]);
-
+  const [newMessage, setNewMessage] = useState(""); // Add state to manage the input value
   const chatBoxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const scrollToBottom = () => {
     if (chatBoxRef.current) {
@@ -25,27 +28,30 @@ export default function Chat() {
     }
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const handleSend = (newMessage: string) => {
-    const newMessages = [
-      ...messages,
-      {
-        message: newMessage,
-        timestamp: new Date().toLocaleTimeString(),
-        sender: "user",
-      },
-    ];
-    setMessages(newMessages);
+  // Update to use the newMessage state
+  const handleSend = () => {
+    if (newMessage.trim()) {
+      const newMessages = [
+        ...messages,
+        {
+          message: newMessage,
+          timestamp: new Date().toLocaleTimeString(),
+          sender: "user",
+        },
+      ];
+      setMessages(newMessages);
+      setNewMessage(""); // Clear the input field after sending
+    }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && event.currentTarget.value) {
-      handleSend(event.currentTarget.value);
-      event.currentTarget.value = "";
+    if (event.key === "Enter") {
+      handleSend();
     }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewMessage(event.target.value);
   };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
