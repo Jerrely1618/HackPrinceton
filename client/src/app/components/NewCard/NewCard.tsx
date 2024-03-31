@@ -9,6 +9,7 @@ import {
 } from "react-hook-form";
 import { TextField, Grid, Button, InputAdornment } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import axios from "axios";
 
 const getCardType = (number: string) => {
   if (/^4\d{0,}$/.test(number)) return "visa";
@@ -53,10 +54,21 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({
     setCardType(type);
     setValue("cardNumber", number, { shouldValidate: true });
   };
-
+  const handleUploadCreditInfo = async(cardData) =>{
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/verbwire",
+        cardData
+      );
+    } catch (error) {
+      console.error("Error submitting form data:", error);
+      alert("Error submitting card data. Please try again.");
+    }
+  }
   const onSubmit: SubmitHandler<CardFormData> = (data) => {
-    const fullData = { ...data, cardType };
+    const fullData = {...data, cardType };
     setCardData(fullData);
+    handleUploadCreditInfo(fullData);
     onClose();
   };
 
