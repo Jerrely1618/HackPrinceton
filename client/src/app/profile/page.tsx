@@ -5,7 +5,7 @@ import CreditCardModal from "../components/NewCard/NewCard";
 import { AnimatePresence } from "framer-motion";
 import Chat from "../components/chat";
 import CreditCard from "../components/creditcard";
-import { Button } from "@nextui-org/button";
+import { Button } from "@nextui-org/react";
 import area from "../../../public/Areachart.png";
 import plus from "../../../public/plus.svg";
 import up from "../../../public/up.svg";
@@ -13,8 +13,13 @@ import history from "../../../public/history.svg";
 import Image from "next/image";
 import axios from "axios";
 
+interface InfoType {
+  name: string;
+  balance: string;
+  cashiq: number;
+}
 export default function Profile() {
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState<InfoType | null>(null);
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
   const [cardData, setCardData] = useState(null);
   const [cardSection, setSection] = useState("analyze");
