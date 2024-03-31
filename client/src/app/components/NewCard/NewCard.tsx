@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { useForm, Controller, SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  UseFormHandleSubmit,
+} from "react-hook-form";
 import { TextField, Grid, Button, InputAdornment } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -39,13 +44,15 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({
   } = useForm<CardFormData>();
   const [cardType, setCardType] = useState<string>("unknown");
 
-  const handleCardNumberChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  const target = event.target as HTMLInputElement; // Cast to the expected type
-  const number = target.value;
-  const type = getCardType(number);
-  setCardType(type);
-  setValue("cardNumber", number, { shouldValidate: true });
-};
+  const handleCardNumberChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const target = event.target as HTMLInputElement; // Cast to the expected type
+    const number = target.value;
+    const type = getCardType(number);
+    setCardType(type);
+    setValue("cardNumber", number, { shouldValidate: true });
+  };
 
   const onSubmit: SubmitHandler<CardFormData> = (data) => {
     const fullData = { ...data, cardType };
@@ -54,7 +61,6 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({
   };
 
   if (!isOpen) return null;
-
 
   return (
     <AnimatePresence>
@@ -73,7 +79,7 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({
           exit={{ opacity: 0 }}
         />
         <motion.div
-          className="relative bg-white rounded-lg p-6 z-50 w-1/2"
+          className="relative bg-white rounded-lg p-6 z-50 w-2/3"
           style={{ zIndex: 1051 }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>

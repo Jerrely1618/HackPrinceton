@@ -59,7 +59,6 @@ export default function Profile() {
       const response = await axios.get("http://localhost:5000/info");
       setInfo(response.data);
       console.log("Response:", response.data);
-      alert("Form data retrieved successfully!");
     } catch (error) {
       console.error("Error getting form data:", error);
       alert("Error retrieving form data. Please try again.");
@@ -78,8 +77,8 @@ export default function Profile() {
           "radial-gradient(32.55% 67.71% at 47.09% 32.29%, #2E2277 0%, #000000 99.74%)",
       }}
     >
-      <div className="z-100">
-        {isNewCardOpen && (
+      {isNewCardOpen ? (
+        <div className="z-100">
           <AnimatePresence>
             <CreditCardModal
               isOpen={isNewCardOpen}
@@ -87,8 +86,11 @@ export default function Profile() {
               setCardData={setCardData}
             />
           </AnimatePresence>
-        )}
-      </div>
+        </div>
+      ) : (
+        ""
+      )}
+
       <section className="flex flex-col gap-10 items-left justify-center p-2 rounded-3xl h-full">
         <div className="flex gap-1">
           <span className=" ">
@@ -276,10 +278,9 @@ export default function Profile() {
           </>
         ) : (
           <>
-          <div className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
-
-            Hello
-          </div>
+            <div className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
+              Hello
+            </div>
           </>
         )}
       </section>

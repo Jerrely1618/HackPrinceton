@@ -3,7 +3,7 @@ import React, { useState, FormEvent } from "react";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Link } from "@nextui-org/react";
-import bg from "../../public/bg.svg";
+import bg from "../../public/bg.png";
 
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import axios from "axios";
@@ -53,7 +53,6 @@ export default function Home() {
         formData
       );
       console.log("Response:", response.data);
-      alert("Form data submitted successfully!");
     } catch (error) {
       console.error("Error submitting form data:", error);
       alert("Error submitting form data. Please try again.");
@@ -252,8 +251,8 @@ export default function Home() {
           </div>
         )}
       </div>
-      <div className="hidden flex-col flex-1 w-full h-screen overflow-hidden lg:flex">
-        <div className="mt-10 ml-10 fixed bg-black border-2 border-white rounded-[32px] p-1 h-full overflow-hidden w-full">
+      <div className="hidden flex-col flex-1 h-screen overflow-hidden lg:flex">
+        <div className="border border-white p-4 rounded-3xl">
           <Image src={bg} alt="Alt" className="mt-1" />
         </div>
       </div>

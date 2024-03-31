@@ -30,7 +30,7 @@ const CreditCard: FC<CreditCardProps> = ({ cardData }) => {
   return (
     <div className="" onMouseMove={handleMouseMove}>
       <div
-        className="card relative w-80 h-52 bg-white/10 backdrop-blur-lg border border-gray-200/20 shadow-lg rounded-lg"
+        className="card relative w-96 h-52 bg-gray-700/40 backdrop-blur-lg border border-gray-200/20 shadow-lg rounded-lg"
         ref={cardRef}
         style={{ transform: transform, transition: "transform 0.1s ease-out" }}
       >
