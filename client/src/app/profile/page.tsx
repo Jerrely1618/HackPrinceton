@@ -37,6 +37,10 @@ export default function Profile() {
   const [cardData, setCardData] = useState<CardDataType | null>(null);
   const [cardSection, setSection] = useState("analyze");
   const [recommend, setRecommend] = useState(null);
+  const [iq, setIQ] = useState(0);
+
+  const getIQ = async () => {};
+
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
   const transactions = [
@@ -91,6 +95,8 @@ export default function Profile() {
   const getInfo = async () => {
     try {
       const response = await axios.get("http://localhost:5000/info");
+      const response2 = await axios.get("http://localhost:5000/cashiq");
+      setIQ(response2.data);
       setInfo(response.data);
       console.log("Response:", response.data);
     } catch (error) {
@@ -202,10 +208,7 @@ export default function Profile() {
               Your <span className="italic font-bold">CashIQ</span>
             </span>
             <span className="text-xl">
-              <span className="text-4xl font-bold">
-                {info ? info.cashiq : "0"}/
-              </span>{" "}
-              100
+              <span className="text-4xl font-bold">{iq ? iq : "0"}/</span> 100
             </span>
             <span
               className="font-semibold text-[12px]"
