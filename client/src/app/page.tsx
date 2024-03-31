@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Link } from "@nextui-org/react";
 import bg from "../../public/bg.svg";
+
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 interface UserData {
@@ -16,38 +17,17 @@ interface UserData {
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
   const [UserData, setUserData] = useState<UserData[]>([]);
-  const handleTryNowClick = () => {
-    setShowForm(true);
-  };
-  const handleBackClick = () => {
-    setShowForm(false);
-  };
-  const handleSubmit = (event) => {
+  const handleTryNowClick = () => setShowForm(true);
+  const handleBackClick = () => setShowForm(false);
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData: UserData = {
-      fullName: (
-        event.currentTarget.elements.namedItem("fullName") as HTMLInputElement
-      ).value,
-      estimatedIncome: (
-        event.currentTarget.elements.namedItem(
-          "estimatedIncome"
-        ) as HTMLInputElement
-      ).value,
-      weeklyExpenditures: (
-        event.currentTarget.elements.namedItem(
-          "weeklyExpenditures"
-        ) as HTMLInputElement
-      ).value,
-      bigSpendings: (
-        event.currentTarget.elements.namedItem(
-          "bigSpendings"
-        ) as HTMLInputElement
-      ).value,
-      goals: (
-        event.currentTarget.elements.namedItem("goals") as HTMLInputElement
-      ).value,
+      fullName: (event.currentTarget.elements.namedItem('fullName') as HTMLInputElement).value,
+      estimatedIncome: (event.currentTarget.elements.namedItem('estimatedIncome') as HTMLInputElement).value,
+      weeklyExpenditures: (event.currentTarget.elements.namedItem('weeklyExpenditures') as HTMLInputElement).value,
+      bigSpendings: (event.currentTarget.elements.namedItem('bigSpendings') as HTMLInputElement).value,
+      goals: (event.currentTarget.elements.namedItem('goals') as HTMLInputElement).value,
     };
-
     setUserData([formData]);
   };
   return (
