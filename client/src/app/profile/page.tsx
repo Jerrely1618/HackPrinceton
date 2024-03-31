@@ -18,7 +18,7 @@ export default function Profile() {
   const [cardSection, setSection] = useState("analyze");
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
-
+  const transactions = [{},{},{}]
   useEffect(() => {
     setIsNewCardOpen(true);
   }, []);
@@ -217,12 +217,14 @@ export default function Profile() {
                 <Image src={area} alt="Area Chart" />
               </div>
             </div>
-            <div className="card">
+            <div className="card mt-4">
               {cardData && <CreditCard cardData={cardData} />}
             </div>
           </>
         ) : (
-          ""
+          <>
+          
+          </>
         )}
       </section>
 

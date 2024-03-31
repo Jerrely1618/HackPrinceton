@@ -11,8 +11,13 @@ const getCardType = (number: string) => {
   if (/^3[47]\d{0,}$/.test(number)) return "amex";
   return "unknown";
 };
+interface CreditCardModalProps {
+  isOpen: boolean;
+  onClose: () => void; 
+  setCardData: (data: any) => void; 
+}
 
-const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
+const CreditCardModal: React.FC<CreditCardModalProps> = ({ isOpen, onClose, setCardData }) => {
   const {
     control,
     handleSubmit,
