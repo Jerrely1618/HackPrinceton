@@ -1,6 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, FC } from 'react';
 
-const CreditCard: React.FC = () => {
+type CardData = {
+  cardNumber?: string; 
+  cardHolderName?: string;
+  cardType?: string;
+  expiryDate?: string;
+
+};
+interface CreditCardProps {
+  cardData: CardData;
+}
+const CreditCard: FC<CreditCardProps> = ({ cardData }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState('');
 
@@ -10,8 +20,8 @@ const CreditCard: React.FC = () => {
     const cardRect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - cardRect.left - cardRect.width / 2;
     const y = e.clientY - cardRect.top - cardRect.height / 2;
-    const rotateX = (y / cardRect.height) * 15;
-    const rotateY = (x / cardRect.width) * -15;
+    const rotateX = (y / cardRect.height) * 15; // Adjust rotation sensitivity here
+    const rotateY = (x / cardRect.width) * -15; // Adjust rotation sensitivity here
 
     setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
   };
@@ -36,8 +46,9 @@ const CreditCard: React.FC = () => {
           </div>
           <div className='flex justify-between items-end'>
             <div className='flex flex-col'>
-            <h3 className='text-white font-mono'>...6532</h3>
-            <h3 className='text-white font-mono'>C. Chauras</h3>
+            <h3 className='text-white font-mono'>{cardData?.cardNumber}</h3>
+            <h3 className='text-white font-mono'>{cardData?.cardHolderName || 'C. Chaurasia'}</h3>
+            <h3 className='text-white font-mono'>{cardData?.expiryDate}</h3>
             </div>
             <div className='text-right'>
               <img src="https://raw.githubusercontent.com/dasShounak/freeUseImages/main/Visa-Logo-PNG-Image.png" alt="Visa" className="w-16 h-auto"/>
