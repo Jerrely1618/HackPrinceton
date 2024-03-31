@@ -4,12 +4,8 @@ import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Link } from "@nextui-org/react";
 import lap from "../../public/lap.png";
-
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import axios from "axios";
-// import { redirect } from "next/navigation";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { useRouter, redirect } from "next/navigation";
 
 interface UserData {
   fullName: string;
@@ -243,7 +239,7 @@ export default function Home() {
             </span>
             <div className="flex flex-row gap-2 mt-4 items-center justify-center">
               <Button
-                onClick={tryForFree}
+                onClick={handleTryNowClick}
                 className="text-white border-2 border-green-600 font-bold"
                 style={{
                   background: "none",
@@ -262,7 +258,6 @@ export default function Home() {
               <Button
                 href="/profile"
                 as={Link}
-                onClick={login}
                 className="text-white border-2 border-green-600 font-bold"
                 style={{
                   background: "none",
