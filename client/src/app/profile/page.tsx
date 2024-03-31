@@ -18,10 +18,21 @@ interface InfoType {
   balance: string;
   cashiq: number;
 }
+interface CardDataType {
+  cardNumber: string;
+  expiryDate: string;
+  cardHolderName: string;
+  cvc: string;
+}
+interface CreditCardModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  setCardData: (data: CardDataType) => void;
+}
 export default function Profile() {
   const [info, setInfo] = useState<InfoType | null>(null);
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
-  const [cardData, setCardData] = useState(null);
+  const [cardData, setCardData] = useState<CardDataType | null>(null);
   const [cardSection, setSection] = useState("analyze");
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
@@ -70,7 +81,7 @@ export default function Profile() {
         {isNewCardOpen && (
           <AnimatePresence>
             <CreditCardModal
-              isOpen={setIsNewCardOpen}
+              isOpen={isNewCardOpen}
               onClose={closeNewCard}
               setCardData={setCardData}
             />
