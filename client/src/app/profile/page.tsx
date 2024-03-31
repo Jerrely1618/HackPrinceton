@@ -13,6 +13,7 @@ import history from "../../../public/history.svg";
 import Image from "next/image";
 import axios from "axios";
 import { Divider } from "@nextui-org/react";
+import Pie from "../components/graphs/radar";
 
 interface InfoType {
   name: string;
@@ -145,6 +146,7 @@ export default function Profile() {
               />
             </svg>
           </span>
+
           <span
             className="text-xl flex flex-row gap-1 text-[18px] justify-center items-center"
             style={{
@@ -162,6 +164,7 @@ export default function Profile() {
             </span>
           </span>
         </div>
+
         <div className="flex flex-col gap-3 rounded-lg">
           <div className={`flex gap-1 flex-col ${background_div}`}>
             <span
@@ -248,7 +251,14 @@ export default function Profile() {
         </div>
       </section>
       <section className="middle flex flex-col gap-1 items-center justify-center w-full flex-[3_3_0%]">
-        <nav className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
+        <div className="card mt-4">
+          {cardData ? (
+            <CreditCard cardData={cardData} />
+          ) : (
+            <div>Add a new card to view spending analysis!</div>
+          )}
+        </div>
+        <nav className="flex flex-row items-center justify-center mb-2 text-center gap-2 w-full">
           <div className="flex flex-row items-center justify-center ml-3">
             <Image src={plus} alt="plis" width={15} />
             <Button
@@ -291,22 +301,13 @@ export default function Profile() {
           <>
             <div
               className={
-                cardData
-                  ? `rounded-2xl w-full bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1  hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 items-center justify-center`
-                  : ""
+                cardData ? `rounded-2xl w-full items-center justify-center` : ""
               }
             >
               {cardData && (
                 <div className="w-full p-5">
-                  <Image src={area} alt="Area Chart" />
+                  <Pie />
                 </div>
-              )}
-            </div>
-            <div className="card mt-4">
-              {cardData ? (
-                <CreditCard cardData={cardData} />
-              ) : (
-                <div>Add a new card to view spending analysis!</div>
               )}
             </div>
           </>

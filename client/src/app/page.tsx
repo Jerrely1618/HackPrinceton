@@ -272,8 +272,8 @@ export default function Home() {
         )}
       </div>
       <div className="hidden flex-col flex-1 items-center justify-center h-screen overflow-hidden lg:flex">
-        <div className="p-1 rounded-3xl">
-          <Image src={lap} alt="Alt" className="mt-1" />
+        <div className="p-1 rounded-3xl w-full">
+          <Image src={lap} alt="Alt" className="mt-1 " />
         </div>
       </div>
     </main>
