@@ -89,6 +89,11 @@ export default function Profile() {
       const response = await axios.get("http://localhost:5000/info");
       setInfo(response.data);
       console.log("Response:", response.data);
+      const response2 = await axios.post("http://localhost:5000/rec", {
+        balance: info?.balance || 4000,
+      });
+      setRecommend(response2.data);
+      console.log("Response:", response2.data);
     } catch (error) {
       console.error("Error getting form data:", error);
       alert("Error retrieving form data. Please try again.");
@@ -221,7 +226,7 @@ export default function Profile() {
               Predict future CashIQ
             </span>
           </div>
-          <div className={`flex flex-col ${background_div}`}>
+          <div className={` ${background_div}`}>
             <span
               className="flex flex-row items-center justify-left gap-1 text-[16px]"
               style={{
@@ -232,7 +237,16 @@ export default function Profile() {
             </span>
 
             {info && recommend ? (
-              recommend
+              <div
+                style={{
+                  whiteSpace: "pre-wrap",
+                  overflow: "auto",
+                  maxWidth: "400px",
+                  height: 100,
+                }}
+              >
+                {recommend}
+              </div>
             ) : (
               <ul className="list-disc text-left p-3 text-[13px]">
                 <li>
