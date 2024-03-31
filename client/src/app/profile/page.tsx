@@ -12,7 +12,7 @@ import up from "../../../public/up.svg";
 import history from "../../../public/history.svg";
 import Image from "next/image";
 import axios from "axios";
-
+import { Divider } from "@nextui-org/react";
 interface InfoType {
   name: string;
   balance: string;
@@ -72,7 +72,7 @@ export default function Profile() {
 
   return (
     <main
-      className="h-screen overflow-hidden flex text-white p-10 w-full gap-10 items-center justify-center"
+      className="h-screen overflow-hidden flex text-white p-5 w-full gap-10 items-center justify-center"
       style={{
         background:
           "radial-gradient(32.55% 67.71% at 47.09% 32.29%, #2E2277 0%, #000000 99.74%)",
@@ -89,9 +89,7 @@ export default function Profile() {
           </AnimatePresence>
         )}
       </div>
-      <section
-        className={`pl-10 flex flex-col gap-10 items-left justify-center`}
-      >
+      <section className="flex flex-col gap-10 items-left justify-center p-2 rounded-3xl h-full">
         <div className="flex gap-1">
           <span className=" ">
             <svg
@@ -224,7 +222,7 @@ export default function Profile() {
                 fontFamily: "Karla, sans-serif",
               }}
             >
-              Edit Card
+              Add/Edit Card
             </Button>
           </div>
           <div className="flex flex-row items-center justify-center">
@@ -255,20 +253,31 @@ export default function Profile() {
         </nav>
         {cardSection === "analyze" ? (
           <>
-            <div className="rounded-2xl w-full bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1  hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 items-center justify-center">
-              <div className="w-full p-5">
-                <Image src={area} alt="Area Chart" />
-              </div>
+            <div
+              className={
+                cardData
+                  ? `rounded-2xl w-full bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1  hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 items-center justify-center`
+                  : ""
+              }
+            >
+              {cardData && (
+                <div className="w-full p-5">
+                  <Image src={area} alt="Area Chart" />
+                </div>
+              )}
             </div>
             <div className="card mt-4">
-              {cardData && <CreditCard cardData={cardData} />}
+              {cardData ? (
+                <CreditCard cardData={cardData} />
+              ) : (
+                <div>Add a new card to view spending analysis!</div>
+              )}
             </div>
           </>
         ) : (
           <></>
         )}
       </section>
-
       <section
         className="flex flex-[2_2_0%] items-center justify-center p-10"
         id="right"
