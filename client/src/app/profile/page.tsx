@@ -34,6 +34,7 @@ export default function Profile() {
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
   const [cardData, setCardData] = useState<CardDataType | null>(null);
   const [cardSection, setSection] = useState("analyze");
+  const [recommend, setRecommend] = useState(null);
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
   const transactions = [{}, {}, {}];
@@ -88,12 +89,14 @@ export default function Profile() {
           </AnimatePresence>
         )}
       </div>
-      <section className={`left space-y-2 pl-10 flex flex-col gap-10 `}>
+      <section
+        className={`pl-10 flex flex-col gap-10 items-left justify-center`}
+      >
         <div className="flex gap-1">
-          <span className="pt-1">
+          <span className=" ">
             <svg
-              width="48"
-              height="48"
+              width="28"
+              height="28"
               viewBox="0 0 72 74"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +112,7 @@ export default function Profile() {
             </svg>
           </span>
           <span
-            className="text-xl flex flex-row gap-2 text-[18px] justify-center items-center"
+            className="text-xl flex flex-row gap-1 text-[18px] justify-center items-center"
             style={{
               fontFamily: "Kufam, sans-serif",
             }}
@@ -163,17 +166,21 @@ export default function Profile() {
               Your <span className="italic font-bold">CashIQ</span>
             </span>
             <span className="text-xl">
-              <span className="text-4xl font-bold">70/</span>{" "}
-              {info ? info.cashiq : "loading"}
+              <span className="text-4xl font-bold">
+                {info ? info.cashiq : "0"}/
+              </span>{" "}
+              100
             </span>
             <span
-              className="text-red-700 font-semibold text-[12px]"
+              className="font-semibold text-[12px]"
               style={{
                 fontFamily: "Karla, sans-serif",
                 color: "#FF007A",
               }}
             >
-              -1.5% from last week
+              {info && info.cashiq
+                ? "-1.5% from last week"
+                : "Add a card to access this feature"}
             </span>
             <span
               className="text-white font-semibold text-[12px] mt-3"
@@ -193,15 +200,16 @@ export default function Profile() {
             >
               Our <span className="font-bold">Recommendation:</span>
             </span>
-            <ul className="list-disc text-left p-3 text-[13px]">
-              <li>Spend less on Uber Eats.</li>
-              <li>Spend less on Grocery.</li>
-              <li>
-                Invest in{" "}
-                <span className="font-bold">Nvidia, Palo Alto Networks.</span>
-              </li>
-              <li>Spend less on Doordash.</li>
-            </ul>
+
+            {info && recommend ? (
+              recommend
+            ) : (
+              <ul className="list-disc text-left p-3 text-[13px]">
+                <li>
+                  Add your card or add a transaction to get recommendations!
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </section>
