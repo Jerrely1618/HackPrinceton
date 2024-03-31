@@ -267,8 +267,13 @@ export default function Profile() {
         ) : (
           <>
           <div className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
-
-            Hello
+            <div className="flex p-3">
+              <p className="text-left">#434214 Pizza Huts, the best in town</p>
+              <div>
+                <p>$30.00</p>
+                <p>3/31/2024</p>
+              </div>
+            </div>
           </div>
           </>
         )}
