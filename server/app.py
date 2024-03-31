@@ -6,8 +6,8 @@ from threading import Thread
 from flask import Flask, send_file, request, jsonify
 from flask_cors import CORS
 from class_mongo_db import MongoHandler
-import requests
-import json
+from cashiq import calcl_cash_iq
+
 global info
 info = {}
 
@@ -79,7 +79,6 @@ mongo_handler = MongoHandler()
 
 @app.route("/info")
 def load_info():
-
     return mongo_handler.return_parameters()
 
 
@@ -134,7 +133,7 @@ def response():
 
 @app.route("/cashiq")
 def cashiq():
-    pass
+    return calcl_cash_iq()
 
 
 app.analysis_image_data = None
