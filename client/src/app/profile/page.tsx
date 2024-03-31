@@ -6,7 +6,11 @@ import { AnimatePresence } from "framer-motion";
 import Chat from "../components/chat";
 import CreditCard from "../components/creditcard";
 import { Button } from "@nextui-org/button";
-import Chart from "../../../public/Areachart.png";
+import area from "../../../public/Areachart.png";
+import plus from "../../../public/plus.svg";
+import up from "../../../public/up.svg";
+import history from "../../../public/history.svg";
+import Image from "next/image";
 
 export default function Profile() {
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
@@ -33,7 +37,7 @@ export default function Profile() {
 
   return (
     <main
-      className="flex flex-row text-white p-2 w-full h-screen items-center justify-center gap-20"
+      className="flex flex-row text-white p-5 w-full h-screen items-center justify-center gap-8"
       style={{
         background:
           "radial-gradient(32.55% 67.71% at 47.09% 32.29%, #2E2277 0%, #000000 99.74%)",
@@ -50,8 +54,8 @@ export default function Profile() {
           </AnimatePresence>
         )}
       </div>
-      <section className="flex flex-col gap-5 flex-[2_2_0%] ">
-        <div className="flex flex-row items-center justify-left gap-2">
+      <section className="flex flex-col gap-5 flex-[2_2_0%] w-full">
+        <div className="flex flex-row mb-10 gap-2 w-full">
           <span className="">
             <svg
               width="28"
@@ -166,42 +170,66 @@ export default function Profile() {
           </div>
         </div>
       </section>
-      <section className="middle flex flex-col items-center justify-center w-full flex-[3_3_0%] ">
-        <nav className={`${background_div} p-0 mb-2`}>
-          <Button
-            onClick={openNewCard}
-            className={`p-0 m-2 text-xl text-white bg-opacity-0`}
-          >
-            Edit Card
-          </Button>
-          <Button
-            onClick={handleAnalyze}
-            className={`p-0 m-2 text-xl text-white bg-opacity-0`}
-          >
-            Analyze Card Spending
-          </Button>
-          <Button
-            onClick={handleTransactions}
-            className={`p-0 m-2 text-xl text-white bg-opacity-0`}
-          >
-            Transactions
-          </Button>
+      <section className="middle flex flex-col gap-1 items-center justify-center w-full flex-[3_3_0%]">
+        <nav className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
+          <div className="flex flex-row items-center justify-center ml-3">
+            <Image src={plus} alt="plis" width={15} />
+            <Button
+              onClick={openNewCard}
+              className="text-[10px] text-white bg-opacity-0"
+              style={{
+                fontFamily: "Karla, sans-serif",
+              }}
+            >
+              Edit Card
+            </Button>
+          </div>
+          <div className="flex flex-row items-center justify-center">
+            <Image src={up} alt="plis" width={15} />
+
+            <Button
+              onClick={handleAnalyze}
+              className={`p-0 m-2 text-[10px] text-white bg-opacity-0`}
+              style={{
+                fontFamily: "Karla, sans-serif",
+              }}
+            >
+              Analyze Card Spending
+            </Button>
+          </div>
+          <div className="flex flex-row items-center justify-center">
+            <Image src={history} alt="plis" width={15} />
+            <Button
+              onClick={handleTransactions}
+              className="p-0 m-2 text-[10px] text-white bg-opacity-0"
+              style={{
+                fontFamily: "Karla, sans-serif",
+              }}
+            >
+              Transactions
+            </Button>
+          </div>
         </nav>
         {cardSection === "analyze" ? (
           <>
-            <div className="w-2/3">
-              <img src="/Areachart.png" alt="Area Chart" />
+            <div className="rounded-2xl w-full bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1  hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 items-center justify-center">
+              <div className="w-full p-5">
+                <Image src={area} alt="Area Chart" />
+              </div>
             </div>
-            <div className="card mb-10">
+            <div className="card">
               {cardData && <CreditCard cardData={cardData} />}
             </div>
           </>
         ) : (
-          <></>
+          ""
         )}
       </section>
 
-      <section className="flex flex-[2_2_0%] " id="right">
+      <section
+        className="flex flex-[2_2_0%] items-center justify-center p-10"
+        id="right"
+      >
         <Chat />
       </section>
     </main>
