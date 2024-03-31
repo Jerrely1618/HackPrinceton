@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from io import BytesIO
 from threading import Thread
-from flask import Flask, send_file
+from flask import Flask, send_file, request, jsonify
 from flask_cors import CORS
+from class_mongo_db import MongoHandler
 
 
 # Function to generate analysis image in a separate thread
@@ -76,9 +77,30 @@ def login():
     pass
 
 
-@app.route("/signup")
+@app.route("/signup", methods=["POST"])
 def signup():
-    pass
+    data = request.get_json()
+
+    # Destructure the data
+    fullName = data.get("fullName")
+    estimatedIncome = data.get("estimatedIncome")
+    weeklyExpenditures = data.get("weeklyExpenditures")
+    bigSpendings = data.get("bigSpendings")
+    goals = data.get("goals")
+
+    # Now you can use the extracted data as needed
+    # For example, insert into MongoDB using your MongoHandler
+    mongo_handler = MongoHandler()
+    mongo_handler.insert_info(
+        cashiq=0,
+        balance=estimatedIncome,
+        weekly_expenditures=weeklyExpenditures,
+        name=fullName,
+        big_spends=bigSpendings.split(",") if bigSpendings else [],
+        goal=goals,
+    )
+
+    return "success"
 
 
 @app.route("/ai")

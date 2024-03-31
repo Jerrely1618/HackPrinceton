@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Link } from "@nextui-org/react";
 import bg from "../../public/bg.svg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import axios from "axios";
 
 interface UserData {
   fullName: string;
@@ -22,9 +23,9 @@ export default function Home() {
   const handleBackClick = () => {
     setShowForm(false);
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const formData: UserData = {
+    const formData = {
       fullName: (
         event.currentTarget.elements.namedItem("fullName") as HTMLInputElement
       ).value,
@@ -48,7 +49,17 @@ export default function Home() {
       ).value,
     };
 
-    setUserData([formData]);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/signup",
+        formData
+      );
+      console.log("Response:", response.data);
+      alert("Form data submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting form data:", error);
+      alert("Error submitting form data. Please try again.");
+    }
   };
   return (
     <main className="flex min-h-screen flex-row w-full items-center justify-center bg-black overflow-hidden">
