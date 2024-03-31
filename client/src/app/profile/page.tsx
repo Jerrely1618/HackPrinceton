@@ -258,45 +258,40 @@ export default function Profile() {
             <div>Add a new card to view spending analysis!</div>
           )}
         </div>
-        <nav className="flex flex-row items-center justify-center mb-2 text-center gap-2 w-full">
-          <div className="flex flex-row items-center justify-center ml-3">
-            <Image src={plus} alt="plis" width={15} />
-            <Button
-              onClick={openNewCard}
-              className="text-[10px] text-white bg-opacity-0"
-              style={{
-                fontFamily: "Karla, sans-serif",
-              }}
-            >
-              Add/Edit Card
-            </Button>
-          </div>
-          <div className="flex flex-row items-center justify-center">
-            <Image src={up} alt="plis" width={15} />
+        <div className="flex flex-row  mb-2 text-center items-center justify-center gap-2">
+          <Button
+            onClick={openNewCard}
+            className="text-[10px] text-white  bg-black"
+            style={{
+              fontFamily: "Karla, sans-serif",
+            }}
+            startContent={<Image src={plus} alt="plis" width={15} />}
+          >
+            Add/Edit Card
+          </Button>
 
-            <Button
-              onClick={handleAnalyze}
-              className={`p-0 m-2 text-[10px] text-white bg-opacity-0`}
-              style={{
-                fontFamily: "Karla, sans-serif",
-              }}
-            >
-              Analyze Card Spending
-            </Button>
-          </div>
-          <div className="flex flex-row items-center justify-center">
-            <Image src={history} alt="plis" width={15} />
-            <Button
-              onClick={handleTransactions}
-              className="p-0 m-2 text-[10px] text-white bg-opacity-0"
-              style={{
-                fontFamily: "Karla, sans-serif",
-              }}
-            >
-              Transactions
-            </Button>
-          </div>
-        </nav>
+          <Button
+            onClick={handleAnalyze}
+            className="text-[10px] text-white bg-black"
+            style={{
+              fontFamily: "Karla, sans-serif",
+            }}
+            startContent={<Image src={up} alt="plis" width={15} />}
+          >
+            Analyze Card Spending
+          </Button>
+
+          <Button
+            onClick={handleTransactions}
+            className="text-[10px] text-white bg-black"
+            style={{
+              fontFamily: "Karla, sans-serif",
+            }}
+            startContent={<Image src={history} alt="plis" width={15} />}
+          >
+            Transactions
+          </Button>
+        </div>
         {cardSection === "analyze" ? (
           <>
             <div
