@@ -51,13 +51,12 @@ export default function Chat() {
 
 
   return (
-    <div className="h-full ">
+    <div className="h-full">
       <div
         style={{
           background:
             "conic-gradient(from 202deg at 81.78% 23.22%, #4629F2 0deg, #13C6FF 125.62500357627869deg, #B94DFB 215.62499284744263deg, #FF53EE 294.3749928474426deg, #F3B960 360deg), #D9D9D9",
         }}
-        className="rounded-3xl"
       >
         <div className="p-[30px] bg-opacity-0  backdrop-blur-[30px] flex-col justify-start items-start gap-5 inline-flex">
           <div className="flex-col justify-start items-start gap-[5px] flex">
@@ -134,13 +133,11 @@ export default function Chat() {
                 height: "70px", // Adjust height as needed
                 padding: "10px 15px",
                 fontSize: "16px",
-                border: "1px solid #eaeaea",
                 borderRadius: "8px",
                 color: "black",
                 backgroundColor: "#fff",
                 outline: "none",
                 transition: "border-color 0.2s",
-                boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
               }}
               className="placeholder-gray-400"
             />
