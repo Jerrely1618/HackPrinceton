@@ -5,11 +5,6 @@ import { Chatmessage } from "./chatmessage";
 export default function Chat() {
   const [messages, setMessages] = useState([
     {
-      message: "Hello, how are you doing?",
-      timestamp: "08:15 AM",
-      sender: "user",
-    },
-    {
       message: "I'm doing well, thank you! How can I help you today?",
       timestamp: "08:16 AM",
       sender: "bot",
