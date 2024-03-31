@@ -6,6 +6,10 @@ import { Link } from "@nextui-org/react";
 import lap from "../../public/lap.png";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import axios from "axios";
+// import { redirect } from "next/navigation";
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { useRouter, redirect } from 'next/navigation';
+
 
 interface UserData {
   fullName: string;
@@ -29,16 +33,16 @@ export default function Home() {
   };
 
   const tryForFree = () => {
-    router.push("/api/auth/login?screen_hint=signup");
+    router.push('/api/auth/login?screen_hint=signup');
   };
 
   if (isLoading) return <div>Loading...</div>;
-
+  
   const handleTryNowClick = () => {
     setShowForm(true);
   };
   const handleBackClick = () => {
-    setShowForm(false);
+    setShowForm(false); 
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
