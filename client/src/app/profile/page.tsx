@@ -33,7 +33,7 @@ export default function Profile() {
 
   return (
     <main
-      className="flex text-white p-5 w-full h-screen items-center justify-center"
+      className="flex flex-row text-white p-2 w-full h-screen items-center justify-center gap-20"
       style={{
         background:
           "radial-gradient(32.55% 67.71% at 47.09% 32.29%, #2E2277 0%, #000000 99.74%)",
@@ -50,7 +50,7 @@ export default function Profile() {
           </AnimatePresence>
         )}
       </div>
-      <section className="pl-10 flex flex-col gap-5 ">
+      <section className="flex flex-col gap-5 flex-[2_2_0%] ">
         <div className="flex flex-row items-center justify-left gap-2">
           <span className="">
             <svg
@@ -166,7 +166,7 @@ export default function Profile() {
           </div>
         </div>
       </section>
-      <section className="middle flex flex-col items-center justify-center w-full space-y-4">
+      <section className="middle flex flex-col items-center justify-center w-full flex-[3_3_0%] ">
         <nav className={`${background_div} p-0 mb-2`}>
           <Button
             onClick={openNewCard}
@@ -201,7 +201,7 @@ export default function Profile() {
         )}
       </section>
 
-      <section className="right mr-5" id="right">
+      <section className="flex flex-[2_2_0%] " id="right">
         <Chat />
       </section>
     </main>

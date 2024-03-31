@@ -22,7 +22,7 @@ export default function Home() {
   const handleBackClick = () => {
     setShowForm(false);
   };
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const formData: UserData = {
       fullName: (
