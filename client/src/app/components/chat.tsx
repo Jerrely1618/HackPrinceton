@@ -7,21 +7,19 @@ export default function Chat() {
         { message: 'I\'m doing well, thank you! How can I help you today?', timestamp: '08:16 AM', sender: 'bot' },
     ]);
 
-    const chatBoxRef = useRef(null); // Ref for the chatbox container
+    const chatBoxRef = useRef(null);
 
-    // Call this function to scroll the chatbox down
     const scrollToBottom = () => {
         if (chatBoxRef.current) {
             chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
         }
     };
 
-    // Scroll down every time messages change
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
 
-    const handleSend = (newMessage: string) => { // Specified type for newMessage
+    const handleSend = (newMessage: string) => {
         const newMessages = [...messages, { message: newMessage, timestamp: new Date().toLocaleTimeString(), sender: 'user' }];
         setMessages(newMessages);
     };
