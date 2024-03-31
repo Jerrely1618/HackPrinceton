@@ -13,6 +13,9 @@ import area from "../../../public/Areachart.png";
 import Image from "next/image";
 import axios from "axios";
 import { Divider } from "@nextui-org/react";
+import { useAuth0 } from "@auth0/auth0-react";
+
+
 interface InfoType {
   name: string;
   balance: string;
@@ -35,6 +38,7 @@ export default function Profile() {
   const [cardData, setCardData] = useState<CardDataType | null>(null);
   const [cardSection, setSection] = useState("analyze");
   const [recommend, setRecommend] = useState(null);
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
   const transactions = [
@@ -156,7 +160,7 @@ export default function Profile() {
                 fontFamily: "Kufam, sans-serif",
               }}
             >
-              {info ? info.name : "loading"}
+              {isLoading ? "Loading..." : isAuthenticated ? user.name : "Not logged in"}
             </span>
           </span>
         </div>

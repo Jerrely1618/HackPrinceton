@@ -11,6 +11,7 @@ import axios from "axios";
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter, redirect } from 'next/navigation';
 
+
 interface UserData {
   fullName: string;
   estimatedIncome: string;
@@ -25,12 +26,14 @@ export default function Home() {
   const router = useRouter();
 
   const login = () => {
-    router.push('/api/auth/login');
+    if (user) {
+      router.push('/profile');
+    } else {
+      router.push('/api/auth/login');
+    }
   };
 
   const tryForFree = () => {
-    // Navigate to your "Try for Free" page
-    // You can pass a query parameter to indicate that this is a signup attempt
     router.push('/api/auth/login?screen_hint=signup');
   };
 
@@ -42,7 +45,7 @@ export default function Home() {
   const handleBackClick = () => {
     setShowForm(false); 
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData: UserData = {
       fullName: (
@@ -74,6 +77,7 @@ export default function Home() {
         formData
       );
       console.log("Response:", response.data);
+      router.push("/profile");
     } catch (error) {
       console.error("Error submitting form data:", error);
       alert("Error submitting form data. Please try again.");
