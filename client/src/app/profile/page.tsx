@@ -265,7 +265,12 @@ export default function Profile() {
             </div>
           </>
         ) : (
-          <></>
+          <>
+          <div className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
+
+            Hello
+          </div>
+          </>
         )}
       </section>
 
