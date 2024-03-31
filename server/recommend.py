@@ -6,7 +6,7 @@ def ask_gpt(balance, client):
 
     # Call the OpenAI API to generate the answer
     response = client.chat.completions.create(
-        model="gpt-4-0613",
+        model="gpt-4-turbo-preview",
         messages=[
             {"role": "user", "content": prompt},
         ],
