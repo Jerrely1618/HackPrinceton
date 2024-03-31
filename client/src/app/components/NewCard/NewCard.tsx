@@ -1,24 +1,30 @@
-import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { TextField, Grid, Button, InputAdornment } from '@mui/material';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { TextField, Grid, Button, InputAdornment } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
 
 const getCardType = (number: string) => {
-  if (/^4\d{0,}$/.test(number)) return 'visa';
-  if (/^5[1-5]\d{0,}$/.test(number)) return 'mastercard';
-  if (/^3[47]\d{0,}$/.test(number)) return 'amex';
-  return 'unknown';
+  if (/^4\d{0,}$/.test(number)) return "visa";
+  if (/^5[1-5]\d{0,}$/.test(number)) return "mastercard";
+  if (/^3[47]\d{0,}$/.test(number)) return "amex";
+  return "unknown";
 };
 
 const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
-  const { control, handleSubmit, register, formState: { errors }, setValue } = useForm();
-  const [cardType, setCardType] = useState('unknown');
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors },
+    setValue,
+  } = useForm();
+  const [cardType, setCardType] = useState("unknown");
 
   const handleCardNumberChange = (event) => {
     const number = event.target.value;
     const type = getCardType(number);
     setCardType(type);
-    setValue('cardNumber', number, { shouldValidate: true });
+    setValue("cardNumber", number, { shouldValidate: true });
   };
 
   const onSubmit = (data) => {
@@ -26,8 +32,8 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
       ...data,
       cardType,
     };
-    setCardData(fullData); 
-    onClose(); 
+    setCardData(fullData);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -60,7 +66,7 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
                   name="cardNumber"
                   control={control}
                   defaultValue=""
-                  rules={{ required: 'Credit card number is required' }}
+                  rules={{ required: "Credit card number is required" }}
                   render={({ field }) => (
                     <TextField
                       {...field}
@@ -87,7 +93,9 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
               {/* Expiry Date Field */}
               <Grid item xs={6}>
                 <TextField
-                  {...register('expiryDate', { required: 'Expiry date is required' })}
+                  {...register("expiryDate", {
+                    required: "Expiry date is required",
+                  })}
                   label="Expiry Date"
                   type="text"
                   variant="filled"
@@ -99,7 +107,7 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
               {/* CVC Field */}
               <Grid item xs={6}>
                 <TextField
-                  {...register('cvc', { required: 'CVC is required' })}
+                  {...register("cvc", { required: "CVC is required" })}
                   label="CVC"
                   type="text"
                   variant="filled"
@@ -111,7 +119,9 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
               {/* Cardholder's Name Field */}
               <Grid item xs={12}>
                 <TextField
-                  {...register('cardHolderName', { required: 'Name on card is required' })}
+                  {...register("cardHolderName", {
+                    required: "Name on card is required",
+                  })}
                   label="Name on Card"
                   type="text"
                   variant="filled"
@@ -125,7 +135,11 @@ const CreditCardModal = ({ isOpen, onClose, setCardData }) => {
                 <Button type="submit" variant="contained" color="primary">
                   Submit
                 </Button>
-                <Button variant="contained" onClick={onClose} style={{ marginLeft: '10px' }}>
+                <Button
+                  variant="contained"
+                  onClick={onClose}
+                  style={{ marginLeft: "10px" }}
+                >
                   Close
                 </Button>
               </Grid>

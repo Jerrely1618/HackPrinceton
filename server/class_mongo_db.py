@@ -1,8 +1,21 @@
-import pymongo
 import random
 import string
 
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
+uri = "mongodb+srv://jawadchy15:jjjUUUnnnLLLSSSpring@cluster0.zepxyrw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi("1"))
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command("ping")
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+"""
 class MongoHandler:
     def __init__(self, host="localhost", port=27017, db_name="hackprinceton"):
         self.client = pymongo.MongoClient(host, port)
@@ -35,7 +48,7 @@ class MongoHandler:
         }
         self.collection.insert_one(info)
         print(f"Inserted info for userid {userid} into INFO collection.")
-
+"""
 
 # Example usage:
 # mongo_handler = MongoHandler()
