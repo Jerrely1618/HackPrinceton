@@ -11,12 +11,6 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
   timestamp,
   sender,
 }) => {
-  const approxCharWidth = 4;
-  const maxCharsPerLine = 10 * 5;
-  const totalPaddingAndMargins = 2;
-  const bubbleWidth =
-    maxCharsPerLine * approxCharWidth + totalPaddingAndMargins;
-
   const messageBubbleStyles = {
     display: "inline-block", // Let the bubble size according to its content
     backgroundColor: sender === "bot" ? "#C7E1ED" : "#6366F1",
@@ -24,6 +18,8 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
     borderRadius: "20px",
     margin: "0 0 10px",
     marginBottom: "10px",
+
+    fontFamily: "Kufam, sans-serif",
   };
 
   return (
@@ -48,21 +44,24 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
               />
             </svg>
           </div>
-          <div className="flex flex-col">
-            <div className="text-black text-base font-semibold font-['Source Sans Pro'] mt-[-30px]">
+          <div className="flex flex-col gap-1">
+            <div
+              className="text-white text-base font-semibold font-['Source Sans Pro']"
+              style={{
+                fontFamily: "Kufam, sans-serif",
+              }}
+            >
               Charlie
             </div>
             <div
-              className={`px-4 py-2.5 rounded-tl-md rounded-bl-md rounded-br-md`}
+              className={`p-2 rounded-tl-md rounded-bl-md rounded-br-md`}
               style={messageBubbleStyles}
             >
-              <div className="text-sm font-normal font-['Source Sans Pro'] leading-normal">
-                {message}
-              </div>
+              <div className=" leading-normal text-[12px]">{message}</div>
             </div>
             <div
-              className="text-xs font-normal font-['Source Sans Pro'] mt-2"
-              style={{ color: "black" }}
+              className="text-xs"
+              style={{ color: "white", fontFamily: "Kufam, sans-serif" }}
             >
               {timestamp}
             </div>
@@ -75,14 +74,12 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
             className={`px-4 py-2.5 rounded-tl-md rounded-bl-md rounded-br-md flex items-center `}
             style={{ ...messageBubbleStyles }}
           >
-            <div className="text-sm font-normal font-['Source Sans Pro'] leading-normal">
-              {message}
-            </div>
+            <div className="leading-normal text-[12px]">{message}</div>
           </div>
           <div className="flex justify-end items-center">
             <div
               className="text-xs font-normal font-['Source Sans Pro'] mt-2"
-              style={{ color: "black" }}
+              style={{ color: "white", fontFamily: "Kufam, sans-serif" }}
             >
               {timestamp}
             </div>

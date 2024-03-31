@@ -13,6 +13,7 @@ import history from "../../../public/history.svg";
 import Image from "next/image";
 import axios from "axios";
 import { Divider } from "@nextui-org/react";
+import Pie from "../components/graphs/radar";
 
 interface InfoType {
   name: string;
@@ -39,33 +40,33 @@ export default function Profile() {
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
 
-    const getRandomTransaction = () => {
-      const places = [
-        { icon: "🍕", description: "DOMINOS" },
-        { icon: "🎮", description: "GAMESTOP" },
-        { icon: "💻", description: "BESTBUY" },
-        { icon: "💡", description: "CON ED" },
-        { icon: "🌐", description: "OPTIMUM INTERNET" },
-        { icon: "🚗", description: "SEVEN-ELEVEN" },
-        { icon: "🍔", description: "BURGER KING" },
-        { icon: "🍟", description: "MCDONALDS" },
-        { icon: "🍦", description: "BASKIN ROBBINS" },
-        { icon: "🍩", description: "DUNKIN DONUTS" },
-      ];
-      const randomPlace = places[Math.floor(Math.random() * places.length)];
-      const randomAmount = (Math.random() * (100 - 5) + 5).toFixed(2);
-    
-      return {
-        icon: randomPlace.icon,
-        description: randomPlace.description,
-        amount: `$${randomAmount}`,
-        date: new Date().toISOString().slice(0, 10), // YYYY-MM-DD format
-      };
+  const getRandomTransaction = () => {
+    const places = [
+      { icon: "🍕", description: "DOMINOS" },
+      { icon: "🎮", description: "GAMESTOP" },
+      { icon: "💻", description: "BESTBUY" },
+      { icon: "💡", description: "CON ED" },
+      { icon: "🌐", description: "OPTIMUM INTERNET" },
+      { icon: "🚗", description: "SEVEN-ELEVEN" },
+      { icon: "🍔", description: "BURGER KING" },
+      { icon: "🍟", description: "MCDONALDS" },
+      { icon: "🍦", description: "BASKIN ROBBINS" },
+      { icon: "🍩", description: "DUNKIN DONUTS" },
+    ];
+    const randomPlace = places[Math.floor(Math.random() * places.length)];
+    const randomAmount = (Math.random() * (100 - 5) + 5).toFixed(2);
+
+    return {
+      icon: randomPlace.icon,
+      description: randomPlace.description,
+      amount: `$${randomAmount}`,
+      date: new Date().toISOString().slice(0, 10), // YYYY-MM-DD format
     };
-    
-    const transactions = Array.from({ length: 5 }, () => getRandomTransaction()).sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+  };
+
+  const transactions = Array.from({ length: 5 }, () =>
+    getRandomTransaction()
+  ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   useEffect(() => {
     setIsNewCardOpen(true);
@@ -293,7 +294,7 @@ export default function Profile() {
             >
               {cardData && (
                 <div className="w-full p-5">
-                  <Image src={area} alt="Area Chart" />
+                  <Pie />
                 </div>
               )}
             </div>
@@ -325,10 +326,7 @@ export default function Profile() {
           </>
         )}
       </section>
-      <section
-        className="flex flex-[2_2_0%] items-center justify-center p-10"
-        id="right"
-      >
+      <section className="flex flex-[2_2_0%]">
         <Chat />
       </section>
     </main>
