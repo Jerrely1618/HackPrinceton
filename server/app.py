@@ -6,8 +6,13 @@ from threading import Thread
 from flask import Flask, send_file, request, jsonify
 from flask_cors import CORS
 from class_mongo_db import MongoHandler
+<<<<<<< HEAD
+from cashiq import calcl_cash_iq
+
+=======
 import requests
 import json
+>>>>>>> 9972034cf719ffa18b276c74b2f2eb66d04f489f
 global info
 info = {}
 
@@ -79,7 +84,6 @@ mongo_handler = MongoHandler()
 
 @app.route("/info")
 def load_info():
-
     return mongo_handler.return_parameters()
 
 
@@ -99,7 +103,7 @@ def upload_CreditCardInfo():
     files = { "filePath": ("cardInformation.txt", open("cardInformation.txt", "rb"), "text/plain") }
     headers = {
         "accept": "application/json",
-        "X-API-Key": "sk_live_84229598-02f7-4804-8a40-ffedc3c0a43e"
+        "X-API-Key": "sk_live_508146f3-74e7-4769-80cb-39dd156fead3"
     }
     response = requests.post(url, files=files, headers=headers)
     return "success"
@@ -134,7 +138,7 @@ def response():
 
 @app.route("/cashiq")
 def cashiq():
-    pass
+    return calcl_cash_iq()
 
 
 app.analysis_image_data = None
