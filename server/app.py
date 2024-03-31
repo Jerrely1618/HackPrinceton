@@ -93,7 +93,6 @@ client.fine_tuning.jobs.create(
 def rec_ai():
     data = request.get_json()
     balance = data["balance"]
-
     return ask_gpt(balance, client)
 
 
