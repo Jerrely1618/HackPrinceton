@@ -39,12 +39,13 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({
   } = useForm<CardFormData>();
   const [cardType, setCardType] = useState<string>("unknown");
 
-  const handleCardNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const number = event.target.value;
-    const type = getCardType(number);
-    setCardType(type);
-    setValue("cardNumber", number, { shouldValidate: true });
-  };
+  const handleCardNumberChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const target = event.target as HTMLInputElement; // Cast to the expected type
+  const number = target.value;
+  const type = getCardType(number);
+  setCardType(type);
+  setValue("cardNumber", number, { shouldValidate: true });
+};
 
   const onSubmit: SubmitHandler<CardFormData> = (data) => {
     const fullData = { ...data, cardType };
