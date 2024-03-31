@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import Head from "next/head"; // Import Head from next/head
 
 import "./globals.css";
 import ParticlesBackground from "./particles";
@@ -19,12 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Kufam:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet"
-      />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Kufam:ital,wght@0,400..900;1,400..900&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="icon" type="image/png" href="/logo.png" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
       <body>
         <ParticlesBackground />
