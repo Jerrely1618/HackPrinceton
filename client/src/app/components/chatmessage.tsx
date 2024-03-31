@@ -55,7 +55,7 @@ export const Chatmessage: React.FC<ChatmessageProps> = ({
             </div>
             <div
               className={`p-2 rounded-tl-md rounded-bl-md rounded-br-md`}
-              style={messageBubbleStyles}
+              style={{ ...messageBubbleStyles }}
             >
               <div className=" leading-normal text-[12px]">{message}</div>
             </div>

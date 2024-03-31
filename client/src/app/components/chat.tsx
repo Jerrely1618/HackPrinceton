@@ -1,5 +1,11 @@
-"use client";
-import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  ChangeEvent,
+  KeyboardEvent,
+} from "react";
+import axios from "axios"; // Import Axios
 import { Chatmessage } from "./chatmessage";
 
 export default function Chat() {
@@ -23,18 +29,33 @@ export default function Chat() {
     }
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (newMessage.trim()) {
-      const newMessages = [
-        ...messages,
-        {
-          message: newMessage,
-          timestamp: new Date().toLocaleTimeString(),
-          sender: "user",
-        },
-      ];
-      setMessages(newMessages);
-      setNewMessage("");
+      const formData = { question: newMessage };
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/response",
+          formData
+        );
+        const newMessages = [
+          ...messages,
+          {
+            message: newMessage,
+            timestamp: new Date().toLocaleTimeString(),
+            sender: "user",
+          },
+          {
+            message: response.data.answer,
+            timestamp: new Date().toLocaleTimeString(),
+            sender: "bot",
+          },
+        ];
+        setMessages(newMessages);
+        scrollToBottom();
+      } catch (error) {
+        console.error("Error fetching response:", error);
+        alert("Error fetching response. Please try again.");
+      }
     }
   };
 
@@ -45,10 +66,9 @@ export default function Chat() {
     }
   };
 
-  const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setNewMessage(event.target.value);
   };
-
 
   return (
     <div className="h-full">

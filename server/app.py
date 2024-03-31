@@ -113,7 +113,7 @@ def rec_ai():
     return response.choices[0].message.content
 
 
-@app.route("/response")
+@app.route("/response", methods=["POST"])
 def get_response():
 
     data = request.get_json()
@@ -129,6 +129,7 @@ def get_response():
         ],
     )
     # Extract and return the response from the API
+    print(response.choices[0].message.content)
     return response.choices[0].message.content
 
 
