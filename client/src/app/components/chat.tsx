@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Chatmessage } from "./chatmessage";
 
@@ -142,7 +142,13 @@ export default function Chat() {
           <div className="justify-start items-center gap-[15px] flex">
             <button onClick={handleSend}>
               <div className="w-10 h-10 bg-indigo-600 rounded-[100px] justify-center items-center gap-2 flex">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
                   <path
                     d="M9 18L15 12L9 6"
                     stroke="white"
