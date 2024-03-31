@@ -60,7 +60,7 @@ export default function Profile() {
 
   return (
     <main
-      className="h-screen flex text-white p-10 w-full gap-10 items-center justify-center"
+      className="h-screen overflow-hidden flex text-white p-10 w-full gap-10 items-center justify-center"
       style={{
         background:
           "radial-gradient(32.55% 67.71% at 47.09% 32.29%, #2E2277 0%, #000000 99.74%)",
