@@ -37,7 +37,39 @@ export default function Profile() {
   const [recommend, setRecommend] = useState(null);
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
-  const transactions = [{}, {}, {}];
+  const transactions = [
+    {
+      icon: "🍕",
+      description: "#434214 Pizza Huts, the best in town",
+      amount: "$30.00",
+      date: "3/31/2024",
+    },
+    {
+      icon: "📚",
+      description: "#837462 Book Store, educational resources",
+      amount: "$45.00",
+      date: "3/29/2024",
+    },
+    {
+      icon: "🎮",
+      description: "#981234 Game Stop, latest games",
+      amount: "$60.00",
+      date: "3/25/2024",
+    },
+    {
+      icon: "☕",
+      description: "#234567 Cafe Central, your morning brew",
+      amount: "$15.00",
+      date: "4/1/2024",
+    },
+    {
+      icon: "🍽️",
+      description: "#789012 Italian Bistro, dinner date",
+      amount: "$80.00",
+      date: "3/28/2024",
+    },
+  ];
+
   useEffect(() => {
     setIsNewCardOpen(true);
   }, []);
@@ -278,9 +310,21 @@ export default function Profile() {
           </>
         ) : (
           <>
-            <div className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full">
-              Hello
-            </div>
+            {transactions.map((transaction, index) => (
+              <div
+                key={index}
+                className="flex flex-row items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-1 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300 mb-2 text-center gap-2 w-full"
+              >
+                <div className="flex p-3 gap-2">
+                  <span className="text-4xl">{transaction.icon}</span>
+                  <p className="text-left flex-1">{transaction.description}</p>
+                  <div>
+                    <p>{transaction.amount}</p>
+                    <p>{transaction.date}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </>
         )}
       </section>
