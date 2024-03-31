@@ -54,7 +54,7 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({
     setCardType(type);
     setValue("cardNumber", number, { shouldValidate: true });
   };
-  const handleUploadCreditInfo = async(cardData) =>{
+  const handleUploadCreditInfo = async (cardData: any) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/verbwire",
@@ -64,9 +64,9 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({
       console.error("Error submitting form data:", error);
       alert("Error submitting card data. Please try again.");
     }
-  }
+  };
   const onSubmit: SubmitHandler<CardFormData> = (data) => {
-    const fullData = {...data, cardType };
+    const fullData = { ...data, cardType };
     setCardData(fullData);
     handleUploadCreditInfo(fullData);
     onClose();
