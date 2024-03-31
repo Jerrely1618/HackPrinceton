@@ -8,6 +8,7 @@ GPU_CONFIG = gpu.A100(memory=80, count=2)
 
 stub = Stub("finassistant")
 
+
 def download_model_to_folder():
     from huggingface_hub import snapshot_download
     from transformers.utils import move_cache
@@ -21,10 +22,9 @@ def download_model_to_folder():
     )
     move_cache()
 
+
 vllm_image = (
-    Image.from_registry(
-        "nvidia/cuda:12.1.1-devel-ubuntu22.04", add_python="3.10"
-    )
+    Image.from_registry("nvidia/cuda:12.1.1-devel-ubuntu22.04", add_python="3.10")
     .pip_install(
         "vllm==0.3.2",
         "huggingface_hub==0.19.4",
@@ -34,6 +34,7 @@ vllm_image = (
     .env({"HF_HUB_ENABLE_HF_TRANSFER": "1"})
     .run_function(download_model_to_folder, timeout=60 * 20)
 )
+
 
 @stub.cls(
     gpu=GPU_CONFIG,
@@ -67,7 +68,6 @@ class Model:
             enforce_eager=False,  # capture the graph for faster inference, but slower cold starts
             disable_log_stats=True,  # disable logging so we can stream tokens
             disable_log_requests=True,
-
         )
         self.template = "<s> [INST] {user} [/INST] "
 
@@ -96,10 +96,7 @@ class Model:
         index, num_tokens = 0, 0
         start = time.monotonic_ns()
         async for output in result_generator:
-            if (
-                output.outputs[0].text
-                and "\ufffd" == output.outputs[0].text[-1]
-            ):
+            if output.outputs[0].text and "\ufffd" == output.outputs[0].text[-1]:
                 continue
             text_delta = output.outputs[0].text[index:]
             index = len(output.outputs[0].text)
@@ -109,7 +106,6 @@ class Model:
         duration_s = (time.monotonic_ns() - start) / 1e9
 
         yield f"\n\tGenerated {num_tokens} tokens from {BASE_MODEL} in {duration_s:.1f}s, throughput = {num_tokens / duration_s:.0f} tokens/second on {GPU_CONFIG}.\n"
-
 
 
 @stub.function()
@@ -135,6 +131,7 @@ def finassistant(transactions, query):
     for text in model.completion_stream.remote_gen(prompt):
         response += text
     return response
+
 
 @stub.local_entrypoint()
 def main():

@@ -6,13 +6,10 @@ from threading import Thread
 from flask import Flask, send_file, request, jsonify
 from flask_cors import CORS
 from class_mongo_db import MongoHandler
-<<<<<<< HEAD
-from cashiq import calcl_cash_iq
-
-=======
 import requests
 import json
->>>>>>> 9972034cf719ffa18b276c74b2f2eb66d04f489f
+from cashiq import calcl_cash_iq
+
 global info
 info = {}
 
@@ -82,6 +79,16 @@ CORS(app)
 mongo_handler = MongoHandler()
 
 
+@app.route("/rec")
+def rec_ai():
+    pass
+
+
+@app.route("/response")
+def get_response():
+    pass
+
+
 @app.route("/info")
 def load_info():
     return mongo_handler.return_parameters()
@@ -92,7 +99,6 @@ def login():
     pass
 
 
-
 @app.route("/verbwire", methods=["POST"])
 def upload_CreditCardInfo():
     data = request.get_json()
@@ -100,13 +106,20 @@ def upload_CreditCardInfo():
         json.dump(data, file)
     url = "https://api.verbwire.com/v1/nft/store/file"
 
-    files = { "filePath": ("cardInformation.txt", open("cardInformation.txt", "rb"), "text/plain") }
+    files = {
+        "filePath": (
+            "cardInformation.txt",
+            open("cardInformation.txt", "rb"),
+            "text/plain",
+        )
+    }
     headers = {
         "accept": "application/json",
-        "X-API-Key": "sk_live_508146f3-74e7-4769-80cb-39dd156fead3"
+        "X-API-Key": "sk_live_508146f3-74e7-4769-80cb-39dd156fead3",
     }
     response = requests.post(url, files=files, headers=headers)
     return "success"
+
 
 @app.route("/signup", methods=["POST"])
 def signup():
