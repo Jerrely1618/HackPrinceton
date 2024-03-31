@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import { TextField, Grid, Button, InputAdornment } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -13,37 +13,48 @@ const getCardType = (number: string) => {
 };
 interface CreditCardModalProps {
   isOpen: boolean;
-  onClose: () => void; 
-  setCardData: (data: any) => void; 
+  onClose: () => void;
+  setCardData: (data: CardFormData) => void;
 }
 
-const CreditCardModal: React.FC<CreditCardModalProps> = ({ isOpen, onClose, setCardData }) => {
+interface CardFormData {
+  cardNumber: string;
+  expiryDate: string;
+  cvc: string;
+  cardHolderName: string;
+  cardType?: string;
+}
+
+const CreditCardModal: React.FC<CreditCardModalProps> = ({
+  isOpen,
+  onClose,
+  setCardData,
+}) => {
   const {
     control,
     handleSubmit,
     register,
     formState: { errors },
     setValue,
-  } = useForm();
-  const [cardType, setCardType] = useState("unknown");
+  } = useForm<CardFormData>();
+  const [cardType, setCardType] = useState<string>("unknown");
 
-  const handleCardNumberChange = (event) => {
-    const number = event.target.value;
-    const type = getCardType(number);
-    setCardType(type);
-    setValue("cardNumber", number, { shouldValidate: true });
-  };
+  const handleCardNumberChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const target = event.target as HTMLInputElement; // Cast to the expected type
+  const number = target.value;
+  const type = getCardType(number);
+  setCardType(type);
+  setValue("cardNumber", number, { shouldValidate: true });
+};
 
-  const onSubmit = (data) => {
-    const fullData = {
-      ...data,
-      cardType,
-    };
+  const onSubmit: SubmitHandler<CardFormData> = (data) => {
+    const fullData = { ...data, cardType };
     setCardData(fullData);
     onClose();
   };
 
   if (!isOpen) return null;
+
 
   return (
     <AnimatePresence>
@@ -133,8 +144,8 @@ const CreditCardModal: React.FC<CreditCardModalProps> = ({ isOpen, onClose, setC
                   type="text"
                   variant="filled"
                   fullWidth
-                  error={!!errors.name}
-                  helperText={errors.name?.message}
+                  error={!!errors.cardHolderName}
+                  helperText={errors.cardHolderName?.message}
                 />
               </Grid>
               {/* Submit and Close Buttons */}
