@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Chatmessage } from './chatmessage';
 
 export default function Chat() {
-    const messages = [
+    const [messages, setMessages] = useState([
         { message: 'Hello, how are you doing?', timestamp: '08:15 AM', sender: 'user' },
         { message: 'I\'m doing well, thank you! How can I help you today?', timestamp: '08:16 AM', sender: 'bot' },
-        { message: 'I have a question about the return policy for a product I purchased.', timestamp: 'Just Now', sender: 'user' },
-    ];
+    ]);
 
-    const handleSend = () => {
-        alert('Send button clicked');
+    const chatBoxRef = useRef(null); // Ref for the chatbox container
+
+    // Call this function to scroll the chatbox down
+    const scrollToBottom = () => {
+        if (chatBoxRef.current) {
+            chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+        }
     };
 
-    const handleImageUpload = (event) => {
-        const file = event.target.files[0];
-        console.log(file);
-        // Upload the image file here
+    // Scroll down every time messages change
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const handleSend = (newMessage: string) => { // Specified type for newMessage
+        const newMessages = [...messages, { message: newMessage, timestamp: new Date().toLocaleTimeString(), sender: 'user' }];
+        setMessages(newMessages);
+    };
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => { // Properly typed event
+        if (event.key === 'Enter' && event.currentTarget.value) {
+            handleSend(event.currentTarget.value);
+            event.currentTarget.value = '';  // Clear the input after sending
+        }
+    };
+
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const file = event.target.files[0];
+            console.log(file);
+        }
     };
 
     return (
@@ -59,11 +81,14 @@ export default function Chat() {
                 gap: '35px',
                 display: 'flex',
                 overflowY: 'auto'
-            }}>
+            }}
+                ref={chatBoxRef}
+            >
                 <div style={{ alignSelf: 'stretch', height: '350px', flexDirection: 'column', justifyContent: 'flex-start', gap: '5px', display: 'flex' }}>
                     {messages.map((msg, index) => (
                         <Chatmessage key={index} message={msg.message} timestamp={msg.timestamp} sender={msg.sender} />
                     ))}
+
                 </div>
             </div>
 
@@ -71,9 +96,36 @@ export default function Chat() {
                 <div className="h-[84px] px-[30px] py-5 bg-white rounded-bl-lg rounded-br-lg justify-between items-center inline-flex">
                     <div className="justify-start items-center gap-5 flex">
                         <div className="w-6 h-6 relative" />
-                        <input type="text" placeholder="Reply ..." className="text-slate-900 text-opacity-60 text-base font-normal font-['Source Sans Pro']" />                    </div>
+                        <input
+                            type="text"
+                            placeholder="Type your message here..."
+                            onKeyPress={handleKeyPress}
+                            style={{
+                                width: '100%',
+                                padding: '10px 15px',
+                                fontSize: '16px',
+                                border: '1px solid #eaeaea',
+                                borderRadius: '8px',
+                                color: 'black',
+                                backgroundColor: '#fff',
+                                outline: 'none',
+                                transition: 'border-color 0.2s',
+                                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+                            }}
+                            className="placeholder-gray-400"
+                        />
+                    </div>
                     <div className="justify-start items-center gap-[15px] flex">
-                        <div className="w-6 h-6 relative opacity-40" onClick={() => document.getElementById('imageUpload').click()} style={{cursor: 'pointer'}}>
+                        <div
+                            className="w-6 h-6 relative opacity-40"
+                            onClick={() => {
+                                const uploadButton = document.getElementById('imageUpload') as HTMLInputElement;
+                                if (uploadButton) {
+                                    uploadButton.click();
+                                }
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g opacity="0.4">
                                     <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
