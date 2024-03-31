@@ -7,6 +7,9 @@ from flask import Flask, send_file, request, jsonify
 from flask_cors import CORS
 from class_mongo_db import MongoHandler
 
+global info
+info = {}
+
 
 # Function to generate analysis image in a separate thread
 def generate_analysis_image():
@@ -70,6 +73,13 @@ def predict():
 
 app = Flask(__name__)
 CORS(app)
+mongo_handler = MongoHandler()
+
+
+@app.route("/info")
+def load_info():
+
+    return mongo_handler.return_parameters()
 
 
 @app.route("/login")
@@ -88,9 +98,6 @@ def signup():
     bigSpendings = data.get("bigSpendings")
     goals = data.get("goals")
 
-    # Now you can use the extracted data as needed
-    # For example, insert into MongoDB using your MongoHandler
-    mongo_handler = MongoHandler()
     mongo_handler.insert_info(
         cashiq=0,
         balance=estimatedIncome,

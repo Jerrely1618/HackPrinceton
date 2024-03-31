@@ -7,6 +7,7 @@ import bg from "../../public/bg.svg";
 
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 interface UserData {
   fullName: string;
@@ -57,6 +58,8 @@ export default function Home() {
       console.error("Error submitting form data:", error);
       alert("Error submitting form data. Please try again.");
     }
+
+    window.location.href = "http://localhost:3000/profile";
   };
   return (
     <main className="flex min-h-screen flex-row w-full items-center justify-center bg-black overflow-hidden">

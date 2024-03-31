@@ -11,14 +11,16 @@ import plus from "../../../public/plus.svg";
 import up from "../../../public/up.svg";
 import history from "../../../public/history.svg";
 import Image from "next/image";
+import axios from "axios";
 
 export default function Profile() {
+  const [info, setInfo] = useState();
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
   const [cardData, setCardData] = useState(null);
   const [cardSection, setSection] = useState("analyze");
   const background_div =
     "bg-white bg-opacity-10 backdrop-blur-sm shadow-lg p-5 rounded-2xl hover:shadow-2xl hover:bg-opacity-16 transition-shadow duration-300";
-  const transactions = [{},{},{}]
+  const transactions = [{}, {}, {}];
   useEffect(() => {
     setIsNewCardOpen(true);
   }, []);
@@ -34,6 +36,22 @@ export default function Profile() {
   const handleTransactions = () => {
     setSection("transaction");
   };
+
+  const getInfo = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/info");
+      setInfo(response.data);
+      console.log("Response:", response.data);
+      alert("Form data retrieved successfully!");
+    } catch (error) {
+      console.error("Error getting form data:", error);
+      alert("Error retrieving form data. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, []);
 
   return (
     <main
@@ -87,7 +105,7 @@ export default function Profile() {
                 fontFamily: "Kufam, sans-serif",
               }}
             >
-              Jawad
+              {info ? info.name : "loading"}
             </span>
           </span>
         </div>
@@ -107,7 +125,7 @@ export default function Profile() {
                 fontFamily: "Karla, sans-serif",
               }}
             >
-              $1000
+              {info ? info.balance : "loading"}
             </span>
             <span
               className="font-semibold text-[12px]"
@@ -129,7 +147,8 @@ export default function Profile() {
               Your <span className="italic font-bold">CashIQ</span>
             </span>
             <span className="text-xl">
-              <span className="text-4xl font-bold">70/</span>100
+              <span className="text-4xl font-bold">70/</span>{" "}
+              {info ? info.cashiq : "loading"}
             </span>
             <span
               className="text-red-700 font-semibold text-[12px]"
@@ -222,9 +241,7 @@ export default function Profile() {
             </div>
           </>
         ) : (
-          <>
-          
-          </>
+          <></>
         )}
       </section>
 
