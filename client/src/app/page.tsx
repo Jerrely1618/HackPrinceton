@@ -3,7 +3,7 @@ import React, { useState, FormEvent } from "react";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { Link } from "@nextui-org/react";
-import bg from "../../public/bg.png";
+import lap from "../../public/lap.png";
 
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import axios from "axios";
@@ -278,9 +278,9 @@ export default function Home() {
           </div>
         )}
       </div>
-      <div className="hidden flex-col flex-1 h-screen overflow-hidden lg:flex">
-        <div className="border border-white p-4 rounded-3xl">
-          <Image src={bg} alt="Alt" className="mt-1" />
+      <div className="hidden flex-col flex-1 items-center justify-center h-screen overflow-hidden lg:flex">
+        <div className="p-1 rounded-3xl">
+          <Image src={lap} alt="Alt" className="mt-1" />
         </div>
       </div>
     </main>
